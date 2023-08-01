@@ -1,75 +1,33 @@
 <template>
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-      </div>
+      <open-screen v-if="screen === 1" @done="switchScreen"></open-screen>
+      <main-screen v-if="screen === 2" @done="switchScreen"></main-screen>
+      <endScreen v-if="screen === 3" @done="switchScreen"></endScreen>
+    </div>
 
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import openScreen from './components/openScreen.vue'
+import mainScreen from './components/mainScreen.vue'
+import endScreen from './components/endScreen.vue'
+
+export default {
+  name: "app",
+  components: { openScreen, mainScreen, endScreen},
+  data() {
+    return {
+      screen: 2,
+    };
+  },
+  methods: {
+    switchScreen() {
+      this.screen === 3 ? this.screen = 1 : this.screen++;
+    }
+  }
+}
 </script>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>
