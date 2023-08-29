@@ -1,45 +1,48 @@
 <template>
-    <img id="student" :class="!isOpened ? blueC : greyC" @click="openStudent">
-    <!-- <img :src="src" class="student" :id="!isOpened ? blue : grey" @click="openStudent"> -->
-  </template>
+    <div class="ignore">
+        <img :src="srcImg" class="stud" @click="openStudent">
+    </div>
+</template>
      
-  <script>
-  
+<script>
+
   
   export default {
     name: "student",
     components: {},
-    props: ['isOpened'],
+    props: ['countGrey', 'finish'],
     data() {
       return {
-        // src: require("@/assets/images/.png"),
+        srcImg: '/student.png'
       };
     },
     methods: {
         openStudent() {
-            this.isOpened = true;
-            // this.src = require("@/assets/images/.png");
-        }
+          if(this.finish) {
+            this.srcImg = '/student.png';
+            this.$emit("changeGrey");
+          }
+      },
     },
     mounted() {
       
-    }
+    },
   }
   
   
-  </script>
+</script>
     
 <style scoped>
-#student {
-    height: 20vh;
-    width: 8vw;
+.stud {
+    margin-bottom: 3vh;
+    height: 26vh;
+    width: 9vw;
+    margin-right: 13vw;
+    filter: grayscale(v-bind(countGrey));
 }
 
-.blueC {
-    background-color: rgb(122, 143, 238);
-}
-.greyC {
-    background-color: rgb(105, 105, 105);
+.ignore {
+    display: contents;
 }
 </style>
   

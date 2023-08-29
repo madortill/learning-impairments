@@ -1,27 +1,44 @@
 <template>
     <div id="firstBehavior">
-      <img src="../assets/images/plain.png" class="plain" @click="showContent">
+      <img src="../assets/images/plain.png" v-show="showPlain" class="plain" @click="showContent">
       <p id="helpText" v-show="showHelp">לחצו עליי</p>
       <div class="learning" v-if="showLearning">
-        <p v-show="text === 1">text</p>
+        <div class="text1" v-show="text === 1">
+          <p id="firstTitle">דיסלקציה</p>
+          <p class="headText">{{ myJson[11] }}</p>
+          <p class="centerText">{{ myJson[12] }}</p>
+          <ul>
+            <li v-for="(sentence, index) in myJson[13]" :key="index">
+              <span>{{ sentence }}</span>
+            </li>
+          </ul>
+          <p class="centerText">{{ myJson[14] }}</p>
+          <ul>
+            <li v-for="(sent, index) in myJson[15]" :key="index">
+              <span>{{ sent }}</span>
+            </li>
+          </ul>
+        </div>
         <p v-show="text === 2">color exercise</p>
-        <p id="nextButton" v-show="text === 1" @click="nextLearning">להמשיך</p>
-        <p id="nextButton" v-show="text === 2" @click="nextLearning">סיימתי</p>
-        <p id="beforeButton" v-show="text === 2" @click="beforeLearning">הקודם</p>
+        <p id="nextButton" style="font-size: 2vh; left: 3vw; top: 85vh;" v-show="text === 1" @click="nextLearning">להמשיך</p>
+        <p id="nextButton" style="font-size: 2vh; left: 3vw; top: 85vh;" v-show="text === 2" @click="nextLearning">סיימתי</p>
+        <p id="beforeButton" style="font-size: 2vh; left: 28vw; top: 85vh;" v-show="text === 2" @click="beforeLearning">הקודם</p>
       </div>
       <div v-if="showAnimation">
-        <div class="typewriter">
-          <h1 v-if="type >= 0" style="top: 15vh;">{{ contant[0] }}</h1>
-          <h1 v-if="type >= 1" style="top: 20vh;">{{ contant[1] }}</h1>
-          <h1 v-if="type >= 2" style="top: 25vh;">{{ contant[2] }}</h1>
-          <h1 v-if="type >= 3" style="top: 30vh;">{{ contant[3] }}</h1>
+        <img src="../assets/images/eyes.svg" id="eyes">
+        <div class="typewriter" @animationend="onAnimationEnd">
+          <h1 v-if="type >= 0" style="top: 30vh;">{{ contant[0] }}</h1>
+          <h1 v-if="type >= 1" style="top: 35vh;">{{ contant[1] }}</h1>
+          <h1 v-if="type >= 2" style="top: 40vh;">{{ contant[2] }}</h1>
+          <h1 v-if="type >= 3" style="top: 45vh;">{{ contant[3] }}</h1>
         </div>
+        <p id="animButton" v-show="showButton" @click="closeAnimation">יאללה להמשיך</p> 
       </div>
     </div>
   </template>
      
   <script>
-  
+  import json from '@/data.json';
   
   export default {
     name: "first-behavior",
@@ -37,6 +54,9 @@
         "בעצם קורא (מלא שגיאות, קטיעות",
         "וסימני שאלה)"],
         type: 0,
+        showPlain: true,
+        showButton: false,
+        myJson: json["content"][0],
       };
     },
     methods: {
@@ -50,12 +70,13 @@
         } 
         else if(this.text === 2){ 
           this.showLearning = false;
-          this.showHelp = false;
           setTimeout(() => {
+            this.showPlain = false;
+            this.showHelp = false;
             this.$emit("startZoom");
           }, 1000);
           setTimeout(() => {
-            this.typeNext();
+            this.showAnimation = true;
           }, 3500);
         } 
       },
@@ -64,15 +85,21 @@
           this.text = 1;
         } 
       },
-      typeNext() {
-        this.showAnimation = true;
-        console.log("hhh");
-        setTimeout(() => {
+      onAnimationEnd (event) {
+        if (event.animationName.includes('typing')) {
+          event.target.style.border = 'none';
           if (this.type < 4) {
             this.type++;
-            this.typeNext();
-          } 
-        }, 2000);
+            if(this.type === 3) {
+              this.showButton = true;
+            }
+          }
+        }
+      },
+      closeAnimation() {
+        this.showAnimation = false;
+        this.$emit("startZoomOut");
+        this.$emit("finishedLearning", 0);
       }
     },
     mounted() {
@@ -89,13 +116,70 @@
     
 <style scoped>
 .learning {
-    background-image: url("../assets/images/paper.jpg");
+    background-image: url("../assets/images/paper.svg");
     background-repeat: no-repeat;
-    height: 87vh;
-    width: 37vw;
+    height: 93vh;
+    width: 38vw;
     position: absolute;
-    top: 7vh;
-    right: 33vw;
+    top: 3vh;
+    right: 31vw;
+    font-size: 2.5vh;
+    text-align: center;
+}
+
+#eyes {
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  background-position: center;
+  /* position: relative; */
+  top: 2vh;
+  overflow: hidden;
+}
+
+#firstTitle {
+  font-weight: bold;
+  left: 3vw;
+  position: relative;
+  font-size: 3vh;
+}
+
+.centerText {
+  text-align: right;
+}
+
+.text1 {
+  position: relative;
+  top: 5vh;
+  right: 5vw;
+}
+
+.headText {
+  width: 25vw;
+  position: relative;
+  left: 10vw;
+}
+
+li {
+  direction: rtl;
+  text-align: right;
+}
+
+@font-face {
+  font-family: buttons;
+  src: url("../assets/fonts/miriwin-webfont.ttf");
+}
+
+#nextButton, #beforeButton {
+  font-family: buttons;
+}
+
+#animButton {
+  font-family: buttons;
+  position: absolute;
+  top: 60vh;
+  left: 27vw;
 }
 
 #nextButton { 
@@ -143,21 +227,17 @@
 .typewriter h1 {
   position: absolute;
   display: block;
-  right: 15vw;
+  right: 34vw;
   color: #000000;
   font-family: monospace;
-  overflow: hidden;
-  width: 30rem;
-  border: black solid 2px;
   /* Ensures the content is not revealed until the animation */
-  border-right: .15em solid rgb(0, 0, 0);
+  overflow: hidden;
+  direction: rtl;
   /* The typwriter cursor */
-  white-space: nowrap;
+  border-left: .15em solid rgb(0, 0, 0);
   /* Keeps the content on a single line */
-  /* margin: 0 auto; */
-  /* Gives that scrolling effect as the typing happens */
+  white-space: nowrap;
   letter-spacing: .15em;
-  /* Adjust as needed */
   animation:
     typing 3.5s steps(30, end),
     blink-caret .5s step-end infinite;
@@ -166,10 +246,10 @@
 /* The typing effect */
 @keyframes typing {
   from {
-    width: 0
+    width: 0;
   }
   to {
-    width: 100%
+    width: 34rem;
   }
 }
 
@@ -178,40 +258,12 @@
 
   from,
   to {
-    border-color: transparent
+    border-left-color: transparent;
   }
 
   50% {
-    border-color: rgba(255, 166, 0, 0)
+    border-left-color: black;
   }
-}
-
-
-/* Hadar's code */
-/* Animation */
-.anim-typewriter {
-  animation: typewriter 3.2s steps(44) normal both,
-  blinkTextCursor 500ms steps(44) 7 both;
-}
-
-.anim-typewriter-short {
-  animation: typewriterShort 1.5s steps(20) normal both,
-  blinkTextCursor 500ms steps(20) 2 both;
-}
-
-@keyframes typewriter{
-  from{width: 0;}
-  to{width: 18em;}
-}
-
-@keyframes typewriterShort{
-  from{width: 0;}
-  to{width: 9em;}
-}
-
-@keyframes blinkTextCursor{
-  from{border-left-color: rgba(255,255,255,.75);}
-  to{border-left-color: transparent;}
 }
 
 </style>
