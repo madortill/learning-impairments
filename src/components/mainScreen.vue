@@ -15,17 +15,17 @@
           <p id="lineHead">מהי לקות למידה?</p>
           <br>
           <p id="text1">{{(myJson[1])}}</p>
-          <ul>
+          <ul style="position: relative; left: 2vw;">
             <li v-for="(sent, index) in content" :key="index" v-show="currcontent === 2">
               <span>{{ sent }}</span>
             </li>
           </ul>
         </div>
         <div id="text2" v-show="learningText === 2">
-          <p style="font-size: 3vh; top: -4vh; position: relative;" v-show="currcontent >= 3">{{(myJson[3])}}</p>
+          <p style="font-size: 3vh; top: -4vh; position: relative; right: -1vw;" v-show="currcontent >= 3">{{(myJson[3])}}</p>
           <p id="different" class="firstScreenTwo" v-show="currcontent >= 4">{{(myJson[4])}}</p>
           <p id="different" class="firstScreenTwo" v-show="currcontent >= 5">{{(myJson[5])}}</p>
-          <p style="font-size: 3vh; top: -10.5vh; position: relative; right: 18vw;" v-show="currcontent >= 6">{{(myJson[6])}}</p>
+          <p style="font-size: 3vh; top: -10.5vh; position: relative; right: 17vw;" v-show="currcontent >= 6">{{(myJson[6])}}</p>
           <p id="different" class="secondScreenTwo" v-show="currcontent >= 7">{{(myJson[7])}}</p>
           <p id="different" class="secondScreenTwo" v-show="currcontent >= 8">{{(myJson[8])}}</p>
           <p id="different" class="secondScreenTwo" v-show="currcontent >= 9">{{(myJson[9])}}</p>
@@ -33,11 +33,12 @@
         </div>
         <img src="../assets/images/back-arrow.png" class="backArrow arrow" @click="backText" v-show="showArrowRigth">
         <img src="../assets/images/next-arrow.png" class="nextArrow arrow" @click="nextText" v-show="showArrowLeft">
+        <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQuestions"></questions>
     </div>
     
     <div id="box">
-    <student v-for="(percent, index) in grayscale" :finish="finishesStud" ref="studs" :countGrey="percent" @changeGrey="changeGrey(index)" :key="index" v-if="showStudents"></student>
-    <component :is="`behavior${currentStudent + 1}`" v-if="showBehavior" @finishedLearning="finished" @finish="finishedLearning" @startZoom="zoomBg" @startZoomOut="zoomOutBg"></component>
+    <student v-for="(percent, index) in grayscale" :finish="finishesStud" class="stud" ref="studs" :countGrey="percent" @changeGrey="showCurrentBehavior(index)" :key="index" v-if="showStudents"></student>
+    <component :is="`behavior${currentStudent + 1}`" v-if="showBehavior" @finishedLearning="finished" @finish="finishedCurrLearning" @startZoom="zoomBg" @startZoomOut="zoomOutBg"></component>
     <div v-show="finishedLearn" id="finishText">
       <p>{{ myJson[27] }}</p>
       <p>{{ myJson[28] }}</p>
@@ -91,6 +92,9 @@
         showArrowRigth: false,
         showArrowLeft: false,
         interval: '',
+        classCursos: '',
+        showQuestions: false,
+        numQuestion: 1
       };
     },
     methods: {
@@ -134,24 +138,35 @@
             else if(this.learningText === 2){ 
                 this.learningText = 1;
                 console.log(this.currcontent);
-                this.showLearningText = false;
-                this.showArrowRigth = false;
-                this.showArrowLeft = false;
-                this.zoomClassAnimation = 'zoomOutClassAnim';
-                this.zoomTeacherAnim = 'zoomOutTeacherAnim';
-                setTimeout(() => {
-                    this.showStudents = true;
-                    this.finishesStud = true;
-                }, 3200);
+                this.showQuestions = true;
+                // this.showLearningText = false;
+                // this.showArrowRigth = false;
+                // this.showArrowLeft = false;
+                // this.zoomClassAnimation = 'zoomOutClassAnim';
+                // this.zoomTeacherAnim = 'zoomOutTeacherAnim';
+                // setTimeout(() => {
+                //     this.showStudents = true;
+                //     this.finishesStud = true;
+                // }, 3200);
             } 
         },
-        changeGrey(number) {
+        showNext() {
+          this.showLearningText = false;
+          this.showArrowRigth = false;
+          this.showArrowLeft = false;
+          this.zoomClassAnimation = 'zoomOutClassAnim';
+          this.zoomTeacherAnim = 'zoomOutTeacherAnim';
+          setTimeout(() => {
+              this.showStudents = true;
+              this.finishesStud = true;
+          }, 3200);
+
+        },
+        showCurrentBehavior(number) {
+          this.finishedLearn = false;
           this.currentStudent = number;
-          console.log(this.firstTime);
-          if(this.grayscale[number - 1] === 0.9) {
-            console.log("jj");
-          }
-          else if (number != this.grayscale.length - 1 && this.firstTime) {
+          console.log(number);
+          if (number !== (this.grayscale.length - 1) && this.firstTime) {
             this.showBehavior = true;
           }
           this.firstTime = false;
@@ -168,21 +183,19 @@
                 this.showStudents = true;
             }, 3000);
         },
-        finishedLearning() {
+        finishedCurrLearning() {
           this.finishedLearn = true;
         },
         finished(number) {
           this.currentStudent = number;
           this.firstTime = false;
-          if(this.grayscale[number - 1] === 0.9) {
-            console.log("jj");
-          }
-          else if (number != this.grayscale.length - 1) {
+          if (number !== (this.grayscale.length - 1)) {
             this.grayscale[number + 1] = 0;
             this.showBehavior = true;
           }
         },
         finishLomda() {
+          this.finishedLearn = false;
           this.$emit("done");
         }
     },
@@ -235,8 +248,8 @@
 }
 
 #different {
-  height: 11vh;
-  width: 8vw;
+  height: 13vh;
+  width: 9vw;
   float: right;
   position: relative;
   background-color: aliceblue;
@@ -245,12 +258,12 @@
 }
 
 .firstScreenTwo {
-  right: 17.5vw;
+  right: 15vw;
   top: -8vh;
 }
 
 .secondScreenTwo {
-  right: 22vw;
+  right: 19vw;
   top: -14vh;
 }
 
@@ -286,7 +299,7 @@ li {
     position: absolute;
     height: 38vh;
     width: 54vw;
-    top: 28vh;
+    top: 26vh;
     left: 40vw;
 }
 
@@ -303,6 +316,11 @@ li {
     top: 32vh;
 }
 
+#projector:hover,
+.arrow:hover {
+  cursor: pointer;
+}
+
 .backArrow {
     right: 17vw;
 }
@@ -317,6 +335,10 @@ li {
     width: 44vw;
     top: -25vh;
     left: 12vw;
+}
+
+.stud:hover {
+  cursor: pointer;
 }
 
 #startButton {
@@ -427,7 +449,6 @@ h3 {
   height: 3.5vh;
   color: #fff;
   border-radius: 5px;
-  font-family: 'Lato', sans-serif;
   font-weight: 500;
   background: transparent;
   cursor: pointer;
@@ -471,6 +492,10 @@ h3 {
 }
 .btn-14:active {
   top: 2px;
+}
+
+student:hover {
+  cursor: pointer;
 }
 </style>
   

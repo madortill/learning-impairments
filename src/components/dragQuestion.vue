@@ -1,6 +1,7 @@
 <template>
     <div id="dragQuestion">
-        <div id="first" v-show="showFirst">
+        <p>גררו לתיבה הלבנה המתאימה!</p>
+        <div id="first" v-show="typeQuestion === 10">
             <div id="firstQuestion">לקות למידה</div>
             <div id="secondQuestion">קושי למידה</div>
             <div id="draggable-container">
@@ -24,10 +25,10 @@
             </div>
             <p v-if="showTrue === 2" id="correct-answer">נכון מאוד!</p>
             <p v-if="showFalse === 2" id="incorrect-answer">לא נכון!</p>
-            
+            <button id="closeBtn" @click="finish" v-show="showTrue === 2 || showFalse === 2">סיימתי</button>
         </div>
 
-        <div id="second" v-show="!showFirst">
+        <div id="second" v-show="typeQuestion === 11">
             <div id="question">דימוי עצמי נמוך מתבטא כחלק ממימד</div>
             <div id="container">
                 <div id="draggable1">
@@ -97,11 +98,11 @@
                 this.showTrueTwo = true;
             }
             else if(data === '12' || data === '13') {
-                this.noOneDrag = false;
-                this.showFalseTwo = true;
+                this.noOneDrag = false; 
+                this.showFalseTwo = true; 
             }
             else {
-                this.showFalse++;
+                this.showFalse++; 
             }
             
         },
@@ -110,14 +111,17 @@
             let data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
             this.imgShow = false;
-            if(data === '2') {
+            if(data === '2') { 
                 this.showTrue++;
             }
             else {
-                this.showFalse++;
+                this.showFalse++; 
             }
             
         },
+        finish() {
+            this.$emit("finished");
+        }
   
     },
     mounted() {
@@ -130,14 +134,23 @@
     
 <style scoped>
 #dragQuestion {
-    background-color: aqua;
-    height: 34vh;
-    width: 39vw;
-    position: absolute;
-    top: 29vh;
-    left: 32vw;
+    position: relative;
+    height: 50vh;
+    width: 55vw;
+    background-color:aqua;
+    text-align: center;
+    top: -30vh;
+    left: -20vw;
+    font-size: 4vh;
 }
 
+#closeBtn {
+  position: absolute;
+  height: 4vh;
+  width: 4vw;
+  top: 48vh;
+  left: 1vw;
+} 
 
 #droppable {
     position: absolute;
@@ -185,57 +198,69 @@
 #incorrect-answer, 
 #correct-answer {
     position: absolute;
-    top: 23vh;
-    left: 16vw;
-    font-size: 3vh;
+    top: 20vh;
+    left: 24vw;
+    font-size: 4vh;
+    width: 8vw;
 }
 
 #draggable-container{
-    width: 10vw;
+    width: 15vw;
     position: absolute;
     left: 8vw;
-    top: 3.5vh;
+    top: 10vh;
     /* background-color: rgb(197, 59, 59); */
+    font-size: 3vh;
 }
 
 #draggable-container2{
     width: 10vw;
     position: absolute;
-    left: 20vw;
-    top: 3.5vh;
+    left: 35vw;
+    top: 10vh;
     /* background-color: rgb(255, 255, 255); */
+    font-size: 3vh;
 }
 
 #box-droppable1 {
-  width: 10vw;
+  width: 20vw;
   height: 4vh;
   position: absolute;
-  left: 1.5vw;
-  top: 26vh;
-  /* background-color: rgb(197, 59, 59); */
+  left: 5vw;
+  top: 34vh;
+  background-color: rgb(255, 255, 255);
 }
 
 #box-droppable2 {
-  width: 10vw;
+  width: 20vw;
   height: 4vh;
   position: absolute;
-  left: 25vw;
-  top: 26vh;
-  /* background-color: rgb(255, 255, 255); */
+  left: 30vw;
+  top: 34vh;
+  background-color: rgb(255, 255, 255);
+}
+
+#first {
+    position: absolute;
+    top: -4vh;
 }
 
 #firstQuestion {
     position: absolute;
-    top: 25vh;
-    left: 5vw;
+    top: 30vh;
+    left: 11vw;
     font-weight: bold;
+    width: 8vw;
+    font-size: 3vh;
 }
 
 #secondQuestion {
     position: absolute;
-    top: 25vh;
-    left: 28vw;
+    top: 30vh;
+    left: 36.5vw;
     font-weight: bold;
+    width: 7vw;
+    font-size: 3vh;
 }
 
 #names {

@@ -34,15 +34,18 @@
         </div>
         <p id="animButton" v-show="showButton" @click="closeAnimation">יאללה להמשיך</p> 
       </div>
+      <questions @finishQuestion="showNextQuestion" :type="numQuestion" v-if="showQuestions && numQuestion === 2"></questions>
+      <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQuestions && numQuestion === 10"></questions>
     </div>
   </template>
      
   <script>
   import json from '@/data.json';
+  import questions from '@/components/questions.vue'  
   
   export default {
     name: "first-behavior",
-    components: {},
+    components: {questions},
     data() {
       return {
         showLearning: false,
@@ -57,6 +60,8 @@
         showPlain: true,
         showButton: false,
         myJson: json["content"][0],
+        numQuestion: 2,
+        showQuestions: false
       };
     },
     methods: {
@@ -97,9 +102,18 @@
         }
       },
       closeAnimation() {
+        this.showQuestions = true;
         this.showAnimation = false;
+        // this.$emit("startZoomOut");
+        // this.$emit("finishedLearning", 0);
+      },
+      showNext() {
+        this.numQuestion = 0;
         this.$emit("startZoomOut");
         this.$emit("finishedLearning", 0);
+      },
+      showNextQuestion() {
+        this.numQuestion = 10;
       }
     },
     mounted() {
@@ -130,12 +144,9 @@
 #eyes {
   height: 100vh;
   width: 100vw;
-  background-repeat: no-repeat;
-  background-size: 100vw 100vh;
-  background-position: center;
-  /* position: relative; */
-  top: 2vh;
-  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 #firstTitle {
@@ -175,6 +186,12 @@ li {
   font-family: buttons;
 }
 
+#nextButton:hover, 
+#beforeButton:hover,
+#animButton:hover {
+  cursor: pointer;
+}
+
 #animButton {
   font-family: buttons;
   position: absolute;
@@ -204,6 +221,10 @@ li {
   right: 73vw;
   font-size: small;
 }
+
+.plain:hover {
+  cursor: pointer;
+}
 .plain {
   height: 16vh;
   width: 8vw;
@@ -229,7 +250,6 @@ li {
   display: block;
   right: 34vw;
   color: #000000;
-  font-family: monospace;
   /* Ensures the content is not revealed until the animation */
   overflow: hidden;
   direction: rtl;

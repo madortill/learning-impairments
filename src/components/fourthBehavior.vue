@@ -55,6 +55,10 @@
   left: 14.3vw;
 }
 
+#whiteBg:hover {
+  cursor: pointer;
+}
+
 #compText {
   text-align: center;
   font-size: x-large;

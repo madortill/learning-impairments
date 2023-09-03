@@ -8,3 +8,15 @@ body {
   width: 100%;
   height: 100%;
 }
+
+button:hover {
+  cursor: pointer;
+}
+
+@font-face {
+  font-family: assistant;
+  src: url(../assets/fonts/Assistant-VariableFont_wght.ttf);
+}
+* {
+  font-family:assistant;
+}

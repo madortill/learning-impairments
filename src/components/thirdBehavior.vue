@@ -1,14 +1,17 @@
 <template>
     <div id="thirdBehavior">
       <div id="text" v-show="showText">
-        <p style="text-align: center;">{{ myJson[22] }}</p>
+        <p id="head">דיסקלקוליה</p>
+        <p style="text-align: center; position: relative; top: -2.5vh;">{{ myJson[22] }}</p>
         <div id="listsText">
-          <p>{{ myJson[23] }}</p>
-          <ul class="lists">
-            <li v-for="(sentence, index) in myJson[24]" :key="index">
-              <span>{{ sentence }}</span>
-            </li>
-          </ul>
+          <div id="firstList">
+            <p>{{ myJson[23] }}</p>
+            <ul class="lists">         
+              <li v-for="(sentence, index) in myJson[24]" :key="index">
+                <span>{{ sentence }}</span>
+              </li>
+            </ul>
+          </div>
           <div id="secList">
             <p>{{ myJson[25] }}</p>
             <ul class="lists">
@@ -73,7 +76,9 @@
         showPlus: false,
         showEight: true,
         inter: '',
+        inter2: '',
         counter: 0,
+        counter2: 0,
         showOne: false
       };
     },
@@ -86,33 +91,27 @@
           this.animations[0] = "firstAnim";
           this.animations[1] = "secAnim";
           this.animations[2] = "thirdAnim";
-          setTimeout(() => {
-            this.showQue = true;
-            this.animations[3] = "fourtAnim";
-            setTimeout(() => {
-              this.inter = setInterval(() => {
-                this.showPlus = !this.showPlus;
-                this.counter++;
-                if(this.counter === 5) {
-                  clearInterval(this.inter);
-                  this.showEight = false;
-                  this.counter = 0;
-                  this.inter = setInterval(() => {
-                    this.showOne = !this.showOne;
-                    this.counter++;
-                    if(this.counter === 5) {
-                      clearInterval(this.inter);
-                      setTimeout(() => {
-                        this.showAnim = false;
-                        this.$emit("startZoomOut");
-                        this.$emit("finishedLearning", 2);
-                      }, 2000);
-                    }
-                  }, 500);
-                }
-              }, 500);
-            }, 4000);
-          }, 4500);
+          this.showQue = true;
+          this.inter = setInterval(() => {
+            this.showPlus = !this.showPlus;
+            this.counter++;
+            if(this.counter === 7) {
+              clearInterval(this.inter);
+              this.showEight = false;
+            }
+          }, 500);
+          this.inter2 = setInterval(() => {
+            this.showOne = !this.showOne;
+            this.counter2++;
+            if(this.counter2 === 7) {
+              clearInterval(this.inter2);
+              setTimeout(() => {
+                this.showAnim = false;
+                this.$emit("startZoomOut");
+                this.$emit("finishedLearning", 2);
+              }, 3000);
+            }
+          }, 500);
         }, 3000);
       },
   
@@ -137,6 +136,13 @@
   left: 0vh;
 }
 
+#head {
+  position: relative;
+  font-weight: bold;
+  text-align: center;
+  font-size: 3vh;
+}
+
 #secNum {
   position: relative;
   top: 0vh;
@@ -145,43 +151,6 @@
 
 #thirdNum {
   visibility: visible;
-}
-
-#fourthNum {
-  display: inline;
-  top: 0vh;
-}
-
-#fifthNum {
-  visibility: hidden;
-}
-
-.fifthAnim {
-  animation: fifthAnim 4s forwards;
-}
-
-@keyframes fifthAnim {
-  0% {
-    visibility: hidden;
-  }
-  100% {
-    visibility: visible;
-  }
-}
-
-.fourtAnim {
-  animation: fourtAnim 4s forwards;
-}
-
-@keyframes fourtAnim {
-  0% {
-    display: inline;
-    top: 0vh;
-  }
-  100% {
-    display: none;
-    top: -2vh;
-  }
 }
 
 .firstAnim {
@@ -218,7 +187,7 @@
   }
   100% {
     top: 0vh;
-    left: -6.3vh;
+    left: -5.5vh;
   }
 }
 
@@ -257,11 +226,9 @@
 #eyes {
   height: 100vh;
   width: 100vw;
-  background-repeat: no-repeat;
-  background-size: 100vw 100vh;
-  background-position: center;
-  overflow: hidden;
-  z-index: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 #numbers {
@@ -276,7 +243,7 @@
   height: 34vh;
   width: 39vw;
   position: absolute;
-  top: 29vh;
+  top: 25vh;
   left: 32vw;
   text-align: right;
   font-size: 2.2vh;
@@ -289,21 +256,30 @@
   font-family: buttons;
 }
 
+#continueButton:hover {
+  cursor: pointer;
+}
+
 #listsText {
   position: relative;
-  top: 0vh;
+  top: -1vh;
   right: 1vw;
 }
 
+#firstList {
+  position: relative;
+  right: 2vw;
+  top: -1.5vh;
+}
 #secList {
   position: relative;
-  left: -23vw;
-  top: -15vh;
+  left: -21vw;
+  top: -17vh;
 }
 
 .lists {
   position: relative;
-  top: 0vh;
+  top: -2vh;
 }
 
 li {

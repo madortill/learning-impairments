@@ -1,7 +1,8 @@
 <template>
     <div id="secondBehavior">
       <div id="text" v-show="showText === 0">
-        <p style="text-align: center;">{{ myJson[16] }} {{ myJson[17] }}</p>
+        <p id="head">דיסגרפיה</p>
+        <p style="text-align: center; position: relative; top: -2.5vh;">{{ myJson[16] }} {{ myJson[17] }}</p>
         <div id="listsText">
           <p>{{ myJson[18] }}</p>
           <ul class="lists">
@@ -115,17 +116,6 @@
   src: url("../assets/fonts/miriwin-webfont.ttf");
 }
 
-#eyes {
-  height: 100vh;
-  width: 100vw;
-  background-repeat: no-repeat;
-  background-size: 100vw 100vh;
-  background-position: center;
-  position: relative;
-  overflow: hidden;
-  z-index: -2;
-}
-
 #animation {
   height: 30vh;
   width: 30vw;
@@ -133,6 +123,13 @@
   z-index: 6;
   top: 30vh;
   left: 15vw;
+}
+
+#head {
+  position: relative;
+  font-weight: bold;
+  text-align: center;
+  font-size: 3vh;
 }
 
 #whiteScreen {
@@ -148,7 +145,7 @@
   height: 34vh;
   width: 39vw;
   position: absolute;
-  top: 28vh;
+  top: 24vh;
   left: 32vw;
   text-align: right;
   font-size: 2.2vh;
@@ -157,19 +154,19 @@
 
 #listsText {
   position: relative;
-  top: 1vh;
+  top: -2vh;
   right: 1vw;
 }
 
 #secList {
   position: relative;
   left: -25vw;
-  top: -13vh;
+  top: -15.5vh;
 }
 
 .lists {
   position: relative;
-  top: 0vh;
+  top: -2vh;
 }
 
 li {
@@ -221,6 +218,10 @@ li {
   top: 59vh;
   left: 32vw;
   font-family: buttons;
+}
+
+#continueButton:hover {
+  cursor: pointer;
 }
 
 #notebook {
