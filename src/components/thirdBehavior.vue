@@ -23,6 +23,8 @@
         </div>
       </div>
       <p id="continueButton" @click="closeStartText" v-show="showText">רוצה להמשיך</p>
+      <questions @finishQuestion="showNextQuestion" :type="numQuestion" v-if="showQues && numQuestion === 3"></questions>
+      <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQues && numQuestion === 7"></questions>
       <div id="animations" v-if="showAnim">
         <img src="../assets/images/eyes.svg" id="eyes">
         <div id="numbers">
@@ -62,10 +64,11 @@
      
   <script>
   import json from '@/data.json';
+  import questions from '@/components/questions.vue'  
   
   export default {
     name: "third-behavior",
-    components: {},
+    components: {questions},
     data() {
       return {
         showText: true,
@@ -79,7 +82,9 @@
         inter2: '',
         counter: 0,
         counter2: 0,
-        showOne: false
+        showOne: false,
+        showQues: false,
+        numQuestion: 3,
       };
     },
     methods: {
@@ -105,15 +110,24 @@
             this.counter2++;
             if(this.counter2 === 7) {
               clearInterval(this.inter2);
-              setTimeout(() => {
+              setTimeout(() => { 
                 this.showAnim = false;
-                this.$emit("startZoomOut");
-                this.$emit("finishedLearning", 2);
+                this.showQues = true;
+                // this.$emit("startZoomOut");
+                // this.$emit("finishedLearning", 2);
               }, 3000);
             }
           }, 500);
         }, 3000);
       },
+      showNext() {
+        this.numQuestion = 0;
+        this.$emit("startZoomOut");
+        this.$emit("finishedLearning", 2);
+      },
+      showNextQuestion() {
+        this.numQuestion = 7;
+      }
   
     },
     mounted() {
@@ -140,7 +154,7 @@
   position: relative;
   font-weight: bold;
   text-align: center;
-  font-size: 3vh;
+  font-size: 3vmin;
 }
 
 #secNum {
@@ -236,7 +250,7 @@
   z-index: 5;
   top: 30vh;
   left: 30vw;
-  font-size: 4vh;
+  font-size: 4vmin;
 }
 
 #text {
@@ -246,7 +260,7 @@
   top: 25vh;
   left: 32vw;
   text-align: right;
-  font-size: 2.2vh;
+  font-size: 2.2vmin;
 }
 
 #continueButton {

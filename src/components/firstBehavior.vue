@@ -19,10 +19,10 @@
             </li>
           </ul>
         </div>
-        <p v-show="text === 2">color exercise</p>
-        <p id="nextButton" style="font-size: 2vh; left: 3vw; top: 85vh;" v-show="text === 1" @click="nextLearning">להמשיך</p>
-        <p id="nextButton" style="font-size: 2vh; left: 3vw; top: 85vh;" v-show="text === 2" @click="nextLearning">סיימתי</p>
-        <p id="beforeButton" style="font-size: 2vh; left: 28vw; top: 85vh;" v-show="text === 2" @click="beforeLearning">הקודם</p>
+        <img src="../assets/images/colors.jpg" id="colors" v-show="text === 2">
+        <p id="nextButton" style="font-size: 2vmin; left: 3vw; top: 85vh;" v-show="text === 1" @click="nextLearning">להמשיך</p>
+        <p id="nextButton" style="font-size: 2vmin; left: 3vw; top: 85vh;" v-show="text === 2" @click="nextLearning">סיימתי</p>
+        <p id="beforeButton" style="font-size: 2vmin; left: 28vw; top: 85vh;" v-show="text === 2" @click="beforeLearning">הקודם</p>
       </div>
       <div v-if="showAnimation">
         <img src="../assets/images/eyes.svg" id="eyes">
@@ -104,8 +104,6 @@
       closeAnimation() {
         this.showQuestions = true;
         this.showAnimation = false;
-        // this.$emit("startZoomOut");
-        // this.$emit("finishedLearning", 0);
       },
       showNext() {
         this.numQuestion = 0;
@@ -118,7 +116,7 @@
     },
     mounted() {
       setTimeout(() => {
-        if(!this.showLearning) {
+        if(!this.showLearning && this.showPlain) {
           this.showHelp = true;
         }
       }, 5000);
@@ -137,8 +135,16 @@
     position: absolute;
     top: 3vh;
     right: 31vw;
-    font-size: 2.5vh;
+    font-size: 2.5vmin;
     text-align: center;
+}
+
+#colors {
+  height: 60vh;
+  width: 30vw;
+  position: relative;
+  top: 17vh;
+  right: 1.3vw;
 }
 
 #eyes {
@@ -153,7 +159,7 @@
   font-weight: bold;
   left: 3vw;
   position: relative;
-  font-size: 3vh;
+  font-size: 3vmin;
 }
 
 .centerText {
@@ -175,6 +181,7 @@
 li {
   direction: rtl;
   text-align: right;
+  margin-right: 2vw;
 }
 
 @font-face {

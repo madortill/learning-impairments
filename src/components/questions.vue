@@ -3,7 +3,7 @@
         <dragQuestion @finished="next" :typeQuestion="10" v-if="currQuestion === 10"></dragQuestion>
         <dragQuestion @finished="next" :typeQuestion="11" v-if="currQuestion === 11"></dragQuestion>
         <openQuestion :question="question" @finished="next" v-if="currQuestion >= 2  && currQuestion <= 5"></openQuestion>
-        <multipleChoiceQuestion :question="question" @finished="next" v-if="currQuestion === 7 || currQuestion === 8"></multipleChoiceQuestion>
+        <multipleChoiceQuestion :question="question" @finished="next" v-if="currQuestion === 7 || currQuestion === 6"></multipleChoiceQuestion>
         <trueOrFalse :question="question" @finished="next" v-if="currQuestion === 1"></trueOrFalse>
     </div>
   </template>
@@ -36,7 +36,6 @@
       }
     },
     mounted() {
-      // console.log(this.question);
     }
   }
   

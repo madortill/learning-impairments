@@ -118,18 +118,18 @@
 
 #animation {
   height: 30vh;
-  width: 30vw;
+  width: 27vw;
   position: relative;
   z-index: 6;
-  top: 30vh;
-  left: 15vw;
+  top: 34vh;
+  left: 18vw;
 }
 
 #head {
   position: relative;
   font-weight: bold;
   text-align: center;
-  font-size: 3vh;
+  font-size: 3vmin;
 }
 
 #whiteScreen {
@@ -148,7 +148,7 @@
   top: 24vh;
   left: 32vw;
   text-align: right;
-  font-size: 2.2vh;
+  font-size: 2.2vmin;
 
 }
 
@@ -176,15 +176,15 @@ li {
 
 #canvasButton {
   position: absolute;
-  top: 65.5vh;
-  left: 27vw;
+  top: 66vh;
+  left: 28vw;
 }
 
 #instru {
   position: absolute;
   top: 28.5vh;
   left: 26vw;
-  font-size: 2.2vh;
+  font-size: 2.2vmin;
   font-family: canvas;
   font-weight: bold;
 }
@@ -199,7 +199,7 @@ li {
   top: 24vh;
   left: 20vw;
   font-family: canvas;
-  font-size: 14vh;
+  font-size: 14vmin;
   z-index: -1;
 }
 

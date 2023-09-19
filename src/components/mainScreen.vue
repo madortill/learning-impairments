@@ -2,9 +2,8 @@
     <div id="mainScreen" :class="zoomClassAnimation">
       <div id="teacher" :class="zoomTeacherAnim"></div>
       <div id="bubbleSpeech" v-show="showBubble && text === 1">
-        <h3>!שלום לך</h3>
-        <h3>היום נלמד על לקויות למידה</h3>
-        <button id="startButton" @click="closeStartText">התחלנו</button> 
+        <h3>שלום לך! <br> היום נלמד על לקויות למידה</h3>
+        <button id="startButton" @click="closeStartText" class="custom-btn btn-1">התחלנו</button>
     </div>
     <div id="secBubbleSpeech" v-show="showBubble && text === 2">
         <h3>!ועכשיו, לחצו על המקרן וחשפו את החומר</h3>
@@ -22,10 +21,10 @@
           </ul>
         </div>
         <div id="text2" v-show="learningText === 2">
-          <p style="font-size: 3vh; top: -4vh; position: relative; right: -1vw;" v-show="currcontent >= 3">{{(myJson[3])}}</p>
+          <p style="font-size: 3vmin; top: -4vh; position: relative; right: -1vw;" v-show="currcontent >= 3">{{(myJson[3])}}</p>
           <p id="different" class="firstScreenTwo" v-show="currcontent >= 4">{{(myJson[4])}}</p>
           <p id="different" class="firstScreenTwo" v-show="currcontent >= 5">{{(myJson[5])}}</p>
-          <p style="font-size: 3vh; top: -10.5vh; position: relative; right: 17vw;" v-show="currcontent >= 6">{{(myJson[6])}}</p>
+          <p style="font-size: 3vmin; top: -10.5vh; position: relative; right: 17vw;" v-show="currcontent >= 6">{{(myJson[6])}}</p>
           <p id="different" class="secondScreenTwo" v-show="currcontent >= 7">{{(myJson[7])}}</p>
           <p id="different" class="secondScreenTwo" v-show="currcontent >= 8">{{(myJson[8])}}</p>
           <p id="different" class="secondScreenTwo" v-show="currcontent >= 9">{{(myJson[9])}}</p>
@@ -45,6 +44,9 @@
       <p>{{ myJson[29] }}</p>
       <button class="custom-btn btn-14" id="finishButton" @click="finishLomda">סיימתי את הלומדה!</button>
     </div>
+    <questions @finishQuestion="showNextQuestion" :type="numQuestion" v-if="showQues && numQuestion === 4"></questions>
+    <questions @finishQuestion="showNextQuestion" :type="numQuestion" v-if="showQues && numQuestion === 5"></questions>
+    <questions @finishQuestion="showNextQuestion" :type="numQuestion" v-if="showQues && numQuestion === 11"></questions>
 
   </div>
       
@@ -94,7 +96,10 @@
         interval: '',
         classCursos: '',
         showQuestions: false,
-        numQuestion: 1
+        numQuestion: 1,
+        arrNumQuestion: [4, 5, 11],
+        counterQuestions: 0,
+        showQues: false
       };
     },
     methods: {
@@ -133,21 +138,11 @@
                     this.showArrowLeft = true;
                     clearInterval(this.interval);
                   }
-                }, 1000);
+                }, 1500);
             } 
             else if(this.learningText === 2){ 
                 this.learningText = 1;
-                console.log(this.currcontent);
                 this.showQuestions = true;
-                // this.showLearningText = false;
-                // this.showArrowRigth = false;
-                // this.showArrowLeft = false;
-                // this.zoomClassAnimation = 'zoomOutClassAnim';
-                // this.zoomTeacherAnim = 'zoomOutTeacherAnim';
-                // setTimeout(() => {
-                //     this.showStudents = true;
-                //     this.finishesStud = true;
-                // }, 3200);
             } 
         },
         showNext() {
@@ -159,13 +154,14 @@
           setTimeout(() => {
               this.showStudents = true;
               this.finishesStud = true;
+              this.numQuestion = 4;
+              this.counterQuestions++;
           }, 3200);
 
         },
         showCurrentBehavior(number) {
           this.finishedLearn = false;
           this.currentStudent = number;
-          console.log(number);
           if (number !== (this.grayscale.length - 1) && this.firstTime) {
             this.showBehavior = true;
           }
@@ -196,11 +192,24 @@
         },
         finishLomda() {
           this.finishedLearn = false;
-          this.$emit("done");
+          this.showQues = true;
+          this.showStudents = false;
+        },
+        showNextQuestion() {
+          if(this.counterQuestions === 1) {
+            this.counterQuestions++;
+            this.numQuestion++;
+          }
+          else if(this.counterQuestions === 2) {
+            this.counterQuestions++;
+            this.numQuestion = 11;
+          } 
+          else if(this.counterQuestions === 3) {
+            this.$emit("done");
+          }
         }
     },
     mounted() {
-      // console.log(this.content);
     },
     computed: {
       content() {
@@ -229,12 +238,12 @@
   top: 30vh;
   left: 32vw;
   text-align: right;
-  font-size: 2.2vh;
+  font-size: 2.2vmin;
   text-align: center;
 }
 
 #text2 {
-  font-size: 2vh;
+  font-size: 2vmin;
   text-align: center;
 }
 
@@ -244,7 +253,7 @@
   height: 2vh;
   right: 28vw;
   top: 18vh;
-  font-size: 2.5vh;
+  font-size: 2.5vmin;
 }
 
 #different {
@@ -272,11 +281,11 @@ li {
   text-align: right;
   position: relative;
   right: 30vw;
-  font-size: 3vh;
+  font-size: 3vmin;
 }
 
 #lineHead {
-  font-size: 4.5vh;
+  font-size: 4.5vmin;
   font-weight: bold;
   position: absolute;
   text-align: center;
@@ -288,7 +297,7 @@ li {
 #text1 {
   height: 10vh;
   width: 40vw;
-  font-size: 3.2vh;
+  font-size: 3.2vmin;
   text-align: center;
   position: relative;
   left: -8vw;
@@ -344,7 +353,9 @@ li {
 #startButton {
     position: relative;
     left: 3.5vw;
-    top: 1vh;
+    top: -0.1vh;
+    width: 3vw;
+    height: 2.2vh;
 }
 
 h3 {
@@ -353,21 +364,32 @@ h3 {
 }
 
 #bubbleSpeech {
-    background-color: rgb(247, 247, 247);
-    height: 16vh;
-    width: 10vw;
-    position: absolute;
-    top: 27vh;
-    left: 23.5vw;
+  background-image: url("@/assets/images/bubble.svg");
+  background-size: 100% 100%;
+  height: 16vh;
+  width: 10vw;
+  position: absolute;
+  top: 27vh;
+  left: 23.5vw;
+}
+
+#bubble1 {
+  height: 15vh;
+  width: 10vw;
+  position: absolute;
+  top: 0vh;
+  left: 0vw;
 }
 
 #secBubbleSpeech {
-    background-color: rgb(247, 247, 247);
-    height: 16vh;
-    width: 10vw;
-    position: absolute;
-    top: 32vh;
-    left: 17vw;
+    /* background-color: rgb(247, 247, 247); */
+  background-image: url("@/assets/images/bubble.svg");
+  background-size: 100% 100%;
+  height: 16vh;
+  width: 10vw;
+  position: absolute;
+  top: 32vh;
+  left: 17vw;
 }
 
 #teacher {
@@ -496,6 +518,16 @@ h3 {
 
 student:hover {
   cursor: pointer;
+}
+
+.btn-1 {
+  background: rgb(170, 170, 170);
+  background: linear-gradient(0deg, rgb(170, 170, 170) 0%, rgb(170, 170, 170) 100%);
+  border: none;
+}
+.btn-1:hover {
+   background: rgb(192, 191, 191);
+background: linear-gradient(0deg, rgb(192, 191, 191) 0%, rgb(192, 191, 191) 100%);
 }
 </style>
   

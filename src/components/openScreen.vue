@@ -3,7 +3,6 @@
       <div id="background"></div>
       <p>ברוכים הבאים ללומדת לקויות למידה!</p>
       <button class="custom-btn btn-12"><span @click="showAnim">#התחלנו</span><span>באלי להתחיל</span></button>
-      <!-- <div><vue-iframe v-if="startAnim" id="animate" src="/animations/startAnim/startAnim.html" /></div> -->
     </div>
   </template>
      
