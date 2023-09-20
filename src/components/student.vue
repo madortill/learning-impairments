@@ -1,12 +1,11 @@
 <template>
   <div class="ignore">
-    <img src="/student.png" class="stud" @click="openStudent">
+    <img :src="`/student${studentNum}.svg`" :class="`stud${studentNum}`" @click="openStudent"
+    :style="countGrey !== 0.9 ? '': 'cursor: default'">
   </div>
 </template>
      
 <script>
-
-
 export default {
   name: "student",
   components: {},
@@ -17,7 +16,8 @@ export default {
         return (value === 0 || value === 0.9);
       }
     },
-    finish: Boolean
+    finish: Boolean,
+    studentNum: Number
   },
   methods: {
     openStudent() {
@@ -36,11 +36,31 @@ export default {
 </script>
     
 <style scoped>
-.stud {
-  margin-bottom: 3vh;
-  height: 26vh;
-  width: 9vw;
-  margin-right: 13vw;
+.stud0 {
+  /* margin-bottom: 3vh; */
+  /* height: 26vh; */
+  margin-top: -2vh;
+  width: 25vw;
+  filter: grayscale(v-bind(countGrey));
+}
+.stud1 {
+  /* margin-bottom: 3vh; */
+  /* height: 26vh; */
+  margin-top: -5vh;
+  width: 21vw;
+  filter: grayscale(v-bind(countGrey));
+}
+.stud2 {
+  /* margin-bottom: 3vh; */
+  /* height: 26vh; */
+  width: 20vw;
+  filter: grayscale(v-bind(countGrey));
+}
+.stud3 {
+  /* margin-bottom: 3vh; */
+  /* height: 26vh; */
+  margin-top: -1vh;
+  width: 23vw;
   filter: grayscale(v-bind(countGrey));
 }
 

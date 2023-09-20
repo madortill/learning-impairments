@@ -7,7 +7,7 @@
     </div>
     <div id="secBubbleSpeech" v-show="showBubble && text === 2">
         <h3>!ועכשיו, לחצו על המקרן וחשפו את החומר</h3>
-        <div id="projector" @click="showLearning"></div>
+        <div id="projector" @click="showLearning">CLICK ME</div>
     </div>
     <div id="learningText" v-show="showLearningText">
         <div v-show="learningText === 1">
@@ -36,7 +36,7 @@
     </div>
     
     <div id="box">
-    <student v-for="(percent, index) in grayscale" :finish="finishesStud" class="stud" ref="studs" :countGrey="percent" @changeGrey="showCurrentBehavior(index)" :key="index" v-if="showStudents"></student>
+    <student v-for="(percent, index) in grayscale" :finish="finishesStud" class="stud" ref="studs" :countGrey="percent" @changeGrey="showCurrentBehavior(index)" :studentNum="index" :key="index" v-if="showStudents"></student>
     <component :is="`behavior${currentStudent + 1}`" v-if="showBehavior" @finishedLearning="finished" @finish="finishedCurrLearning" @startZoom="zoomBg" @startZoomOut="zoomOutBg"></component>
     <div v-show="finishedLearn" id="finishText">
       <p>{{ myJson[27] }}</p>
@@ -223,10 +223,10 @@
     
 <style scoped>
 #mainScreen {
-    background-image: url("../assets/images/classroom.jpg");
+    background-image: url("../assets/images/classroom.svg");
     background-repeat: no-repeat;
     background-size: 100vw 100vh;
-    background-position: center;
+    background-position: 50% 80%;
     height: 100vh;
     width: 100vw;
 }
@@ -342,8 +342,9 @@ li {
     position: absolute;
     height: 6vh;
     width: 44vw;
-    top: -25vh;
-    left: 12vw;
+    top: -10vh;
+    left: 8vw;
+    background-color: aliceblue;
 }
 
 .stud:hover {
@@ -403,13 +404,14 @@ h3 {
 
 #box {
     display: flex;
-    justify-content: flex-start;
-    height: 100%;
+    justify-content: space-between;
+    /* height: 100%; */
     width: 100%;
     flex-wrap: wrap;
     align-content: flex-end;
-    align-items: flex-start;
     flex-direction: row-reverse;
+    position: absolute;
+    bottom: -3vh;
 }
 .zoomClassAnim {
   animation: zoomClass 3s forwards;
@@ -423,7 +425,8 @@ h3 {
     background-size: 100vw 100vh;
   }
   100% {
-    background-size: 130vw 130vh;
+    background-size: 170vw 170vh;
+    /* background-position: 50% 80%; */
   }
 }
 
