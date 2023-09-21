@@ -1,6 +1,6 @@
 <template>
     <div id="mainScreen" :class="zoomClassAnimation">
-      <div id="teacher" :class="zoomTeacherAnim"></div>
+      <img id="teacher" :class="zoomTeacherAnim" src="../assets/images/teacher.svg" />
       <div id="bubbleSpeech" v-show="showBubble && text === 1">
         <h3>שלום לך! <br> היום נלמד על לקויות למידה</h3>
         <button id="startButton" @click="closeStartText" class="custom-btn btn-1">התחלנו</button>
@@ -14,13 +14,13 @@
           <p id="lineHead">מהי לקות למידה?</p>
           <br>
           <p id="text1">{{(myJson[1])}}</p>
-          <ul style="position: relative; left: 2vw;">
+          <ul>
             <li v-for="(sent, index) in content" :key="index" v-show="currcontent === 2">
               <span>{{ sent }}</span>
             </li>
           </ul>
         </div>
-        <div id="text2" v-show="learningText === 2">
+        <div id="text2" :style="learningText === 2? 'visibility: visible': 'visibility: hidden'">
           <p style="font-size: 3vmin; top: -4vh; position: relative; right: -1vw;" v-show="currcontent >= 3">{{(myJson[3])}}</p>
           <p id="different" class="firstScreenTwo" v-show="currcontent >= 4">{{(myJson[4])}}</p>
           <p id="different" class="firstScreenTwo" v-show="currcontent >= 5">{{(myJson[5])}}</p>
@@ -30,8 +30,8 @@
           <p id="different" class="secondScreenTwo" v-show="currcontent >= 9">{{(myJson[9])}}</p>
           <p class="thirdScreenTwo" v-show="currcontent >= 10">{{(myJson[10])}}</p>
         </div>
-        <img src="../assets/images/back-arrow.png" class="backArrow arrow" @click="backText" v-show="showArrowRigth">
-        <img src="../assets/images/next-arrow.png" class="nextArrow arrow" @click="nextText" v-show="showArrowLeft">
+        <img src="../assets/images/back-arrow.svg" class="backArrow arrow" @click="backText" v-show="showArrowRigth">
+        <img src="../assets/images/next-arrow.svg" class="nextArrow arrow" @click="nextText" v-show="showArrowLeft">
         <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQuestions"></questions>
     </div>
     
@@ -229,6 +229,7 @@
     background-position: 50% 80%;
     height: 100vh;
     width: 100vw;
+    --teacher-left-offset: 15vw;
 }
 
 #finishText {
@@ -239,11 +240,6 @@
   left: 32vw;
   text-align: right;
   font-size: 2.2vmin;
-  text-align: center;
-}
-
-#text2 {
-  font-size: 2vmin;
   text-align: center;
 }
 
@@ -276,41 +272,40 @@
   top: -14vh;
 }
 
-li {
+/* Text on board */
+#learningText {
+  position: absolute;
+  top: 47%;
+  left: 45.5%;
   direction: rtl;
   text-align: right;
-  position: relative;
-  right: 30vw;
+  transform: translate(-50%, -50%);
+  width: 69vw;
+  /* background-color: maroon; */
   font-size: 3vmin;
+  padding: 1% 2%;
+  box-sizing: border-box;
+  color: rgb(225, 225, 224);
 }
 
 #lineHead {
   font-size: 4.5vmin;
   font-weight: bold;
-  position: absolute;
   text-align: center;
-  left: 5vw;
   margin: 0;
-  top: -5vh;
 }
 
 #text1 {
-  height: 10vh;
-  width: 40vw;
   font-size: 3.2vmin;
-  text-align: center;
-  position: relative;
-  left: -8vw;
-  top: -2vh;
+  margin-bottom: 2%;
+  margin-top: 0;
 }
 
-#learningText {
-    position: absolute;
-    height: 38vh;
-    width: 54vw;
-    top: 26vh;
-    left: 40vw;
+#text2 {
+  font-size: 2vmin;
+  text-align: center;
 }
+
 
 
 #finishButton {
@@ -351,13 +346,6 @@ li {
   cursor: pointer;
 }
 
-#startButton {
-    position: relative;
-    left: 3.5vw;
-    top: -0.1vh;
-    width: 3vw;
-    height: 2.2vh;
-}
 
 h3 {
     text-align: center;
@@ -365,14 +353,32 @@ h3 {
 }
 
 #bubbleSpeech {
+  direction: rtl;
   background-image: url("@/assets/images/bubble.svg");
   background-size: 100% 100%;
   height: 16vh;
-  width: 10vw;
+  width: 7vw;
   position: absolute;
-  top: 27vh;
-  left: 23.5vw;
+  bottom: 45vh;
+  left: calc(var(--teacher-left-offset) + 8vw);
+  padding: 0.2% 2%;
+
 }
+
+#startButton {
+    right: 50%;
+    width: 4vw;
+    height: 2.5vh;
+}
+
+#teacher {
+    /* background-color: black; */
+    height: 42vh;
+    width: auto;
+    position: absolute;
+    left: var(--teacher-left-offset);
+    bottom: 5vh;
+} 
 
 #bubble1 {
   height: 15vh;
@@ -393,14 +399,6 @@ h3 {
   left: 17vw;
 }
 
-#teacher {
-    background-color: black;
-    height: 40vh;
-    width: 7vw;
-    position: absolute;
-    right: 78vw;
-    top: 40vh;
-} 
 
 #box {
     display: flex;
@@ -432,30 +430,19 @@ h3 {
 
 @keyframes zoomTeacher {
   0% {
-    right: 78vw;
-    top: 40vh;
+    transform: scale(100%, 100%) translateX();
   }
   100% {
-    right: 84vw;
-    top: 49vh;
+    transform: scale(170%, 170%) translateX(-70%);
   }
 }
 
 .zoomOutClassAnim {
-  animation: zoomOutClass 3s forwards;
-}
-
-@keyframes zoomOutClass {
-  0% {
-    background-size: 130vw 130vh;
-  }
-  100% {
-   background-size: 100vw 100vh;
-  }
+  animation: zoomClass 3s reverse;
 }
 
 .zoomOutTeacherAnim {
-  animation: zoomOutTeacher 3s forwards;
+  animation: zoomTeacher 3s reverse;
 }
 
 @keyframes zoomOutTeacher {
