@@ -5,29 +5,31 @@
         <h3>שלום לך! <br> היום נלמד על לקויות למידה</h3>
         <button id="startButton" @click="closeStartText" class="custom-btn btn-1">התחלנו</button>
     </div>
-    <div id="secBubbleSpeech" v-show="showBubble && text === 2">
-        <h3>!ועכשיו, לחצו על המקרן וחשפו את החומר</h3>
-        <div id="projector" @click="showLearning">CLICK ME</div>
+    <div v-show="showBubble && text === 2">
+      <div id="projector" @click="showLearning">CLICK ME</div>
+      <div id="secBubbleSpeech">
+          <h3>!ועכשיו, לחצו על המקרן וחשפו את החומר</h3>
+      </div>
     </div>
     <div id="learningText" v-show="showLearningText">
         <div v-show="learningText === 1">
           <p id="lineHead">מהי לקות למידה?</p>
           <br>
           <p id="text1">{{(myJson[1])}}</p>
-          <ul>
-            <li v-for="(sent, index) in content" :key="index" v-show="currcontent === 2">
+          <ul :style="`visibility: ${currcontent === 2 ? 'visible': 'hidden'}`">
+            <li v-for="(sent, index) in content" :key="index">
               <span>{{ sent }}</span>
             </li>
           </ul>
         </div>
-        <div id="text2" :style="learningText === 2? 'visibility: visible': 'visibility: hidden'">
-          <p style="font-size: 3vmin; top: -4vh; position: relative; right: -1vw;" v-show="currcontent >= 3">{{(myJson[3])}}</p>
-          <p id="different" class="firstScreenTwo" v-show="currcontent >= 4">{{(myJson[4])}}</p>
-          <p id="different" class="firstScreenTwo" v-show="currcontent >= 5">{{(myJson[5])}}</p>
-          <p style="font-size: 3vmin; top: -10.5vh; position: relative; right: 17vw;" v-show="currcontent >= 6">{{(myJson[6])}}</p>
-          <p id="different" class="secondScreenTwo" v-show="currcontent >= 7">{{(myJson[7])}}</p>
-          <p id="different" class="secondScreenTwo" v-show="currcontent >= 8">{{(myJson[8])}}</p>
-          <p id="different" class="secondScreenTwo" v-show="currcontent >= 9">{{(myJson[9])}}</p>
+        <div id="text2" :style="learningText === 2 ? 'display: block': 'none: hidden'">
+          <p style="font-size: 3vmin;" v-show="currcontent >= 3">{{(myJson[3])}}</p>
+          <p class="different firstScreenTwo" v-show="currcontent >= 4">{{(myJson[4])}}</p>
+          <p class="different firstScreenTwo" v-show="currcontent >= 5">{{(myJson[5])}}</p>
+          <p style="font-size: 3vmin;" v-show="currcontent >= 6">{{(myJson[6])}}</p>
+          <p class="different secondScreenTwo" v-show="currcontent >= 7">{{(myJson[7])}}</p>
+          <p class="different secondScreenTwo" v-show="currcontent >= 8">{{(myJson[8])}}</p>
+          <p class="different secondScreenTwo" v-show="currcontent >= 9">{{(myJson[9])}}</p>
           <p class="thirdScreenTwo" v-show="currcontent >= 10">{{(myJson[10])}}</p>
         </div>
         <img src="../assets/images/back-arrow.svg" class="backArrow arrow" @click="backText" v-show="showArrowRigth">
@@ -229,7 +231,7 @@
     background-position: 50% 80%;
     height: 100vh;
     width: 100vw;
-    --teacher-left-offset: 15vw;
+    --teacher-right-offset: 20vw;
 }
 
 #finishText {
@@ -252,7 +254,7 @@
   font-size: 2.5vmin;
 }
 
-#different {
+.different {
   height: 13vh;
   width: 9vw;
   float: right;
@@ -283,7 +285,7 @@
   width: 69vw;
   /* background-color: maroon; */
   font-size: 3vmin;
-  padding: 1% 2%;
+  padding: 1% 3%;
   box-sizing: border-box;
   color: rgb(225, 225, 224);
 }
@@ -305,7 +307,6 @@
   font-size: 2vmin;
   text-align: center;
 }
-
 
 
 #finishButton {
@@ -337,8 +338,9 @@
     position: absolute;
     height: 6vh;
     width: 44vw;
-    top: -10vh;
-    left: 8vw;
+    top: 22%;
+    left: 45%;
+    transform: translateX(-50%);
     background-color: aliceblue;
 }
 
@@ -360,7 +362,7 @@ h3 {
   width: 7vw;
   position: absolute;
   bottom: 45vh;
-  left: calc(var(--teacher-left-offset) + 8vw);
+  right: calc(var(--teacher-right-offset));
   padding: 0.2% 2%;
 
 }
@@ -376,8 +378,10 @@ h3 {
     height: 42vh;
     width: auto;
     position: absolute;
-    left: var(--teacher-left-offset);
+    right: var(--teacher-right-offset);
+    /* right: 10vw; */
     bottom: 5vh;
+    transform: translateX(70%);
 } 
 
 #bubble1 {
@@ -390,13 +394,15 @@ h3 {
 
 #secBubbleSpeech {
     /* background-color: rgb(247, 247, 247); */
+  direction: rtl;
   background-image: url("@/assets/images/bubble.svg");
   background-size: 100% 100%;
   height: 16vh;
-  width: 10vw;
+  width: 7vw;
   position: absolute;
-  top: 32vh;
-  left: 17vw;
+  bottom: 60vh;
+  right: calc(var(--teacher-right-offset) - 7vw);
+  padding: 0.2% 2%;
 }
 
 
@@ -424,16 +430,15 @@ h3 {
   }
   100% {
     background-size: 170vw 170vh;
-    /* background-position: 50% 80%; */
   }
 }
 
 @keyframes zoomTeacher {
   0% {
-    transform: scale(100%, 100%) translateX();
+    transform: scale(100%, 100%) translateX(70%);
   }
   100% {
-    transform: scale(170%, 170%) translateX(-70%);
+    transform: scale(170%, 170%) translateX(70%);
   }
 }
 
