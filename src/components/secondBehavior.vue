@@ -145,11 +145,11 @@
   height: 34vh;
   width: 39vw;
   position: absolute;
-  top: 24vh;
-  left: 32vw;
+  top: -32vh;
+  left: 28vw;
   text-align: right;
-  font-size: 2.2vmin;
-
+  font-size: 1.9vmin;
+  color: rgb(201, 201, 201);
 }
 
 #listsText {
@@ -215,8 +215,13 @@ li {
 
 #continueButton {
   position: absolute;
-  top: 59vh;
-  left: 32vw;
+  top: -4vh;
+  background-color: #bad6dd;
+  padding: 2px 8px;
+  box-shadow: -1px 1px black;
+  border-radius: 6px;
+  border: solid 1px gray;
+  left: 27vw;
   font-family: buttons;
 }
 

@@ -26,7 +26,7 @@
       <questions @finishQuestion="showNextQuestion" :type="numQuestion" v-if="showQues && numQuestion === 3"></questions>
       <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQues && numQuestion === 7"></questions>
       <div id="animations" v-if="showAnim">
-        <img src="../assets/images/eyes.svg" id="eyes">
+        <img src="../assets/images/eyes.svg" id="eyes" class="eyes">
         <div id="numbers">
           <p id="firstExer"> 
             <span>3</span>
@@ -192,15 +192,15 @@
 
 @keyframes secAnim {
   0% {
-    top: 0vh;
+    top: 4vh;
     left: 0vh;
   }
   50% {
-    top: -4vh;
+    top: 0vh;
     left: -3vh;
   }
   100% {
-    top: 0vh;
+    top: 4vh;
     left: -5.5vh;
   }
 }
@@ -237,18 +237,18 @@
   left: 15vw;
 }
 
-#eyes {
+.eyes {
   height: 100vh;
   width: 100vw;
   position: absolute;
-  bottom: 0;
+  bottom: 3vh;
   left: 0;
 }
 
 #numbers {
   position: absolute;
   z-index: 5;
-  top: 30vh;
+  top: -18vh;
   left: 30vw;
   font-size: 4vmin;
 }
@@ -257,18 +257,25 @@
   height: 34vh;
   width: 39vw;
   position: absolute;
-  top: 25vh;
-  left: 32vw;
+  top: -32vh;
+  left: 28vw;
   text-align: right;
-  font-size: 2.2vmin;
+  font-size: 1.9vmin;
+  color: rgb(201, 201, 201);
 }
 
 #continueButton {
   position: absolute;
-  top: 59vh;
-  left: 33vw;
+  top: -4vh;
+  background-color: #bad6dd;
+  padding: 2px 8px;
+  box-shadow: -1px 1px black;
+  border-radius: 6px;
+  border: solid 1px gray;
+  left: 27vw;
   font-family: buttons;
 }
+
 
 #continueButton:hover {
   cursor: pointer;
@@ -299,5 +306,11 @@
 li {
   direction: rtl;
   text-align: right;
+}
+
+#questions {
+  /* position: absolute;
+    top: -100vh;
+    left: 0; */
 }
 </style>

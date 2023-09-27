@@ -27,10 +27,10 @@
       <div v-if="showAnimation">
         <img src="../assets/images/eyes.svg" id="eyes">
         <div class="typewriter" @animationend="onAnimationEnd">
-          <h1 v-if="type >= 0" style="top: 30vh;">{{ contant[0] }}</h1>
-          <h1 v-if="type >= 1" style="top: 35vh;">{{ contant[1] }}</h1>
-          <h1 v-if="type >= 2" style="top: 40vh;">{{ contant[2] }}</h1>
-          <h1 v-if="type >= 3" style="top: 45vh;">{{ contant[3] }}</h1>
+          <h1 v-if="type >= 0" style="top: -66vh;">{{ contant[0] }}</h1>
+          <h1 v-if="type >= 1" style="top: -61vh;">{{ contant[1] }}</h1>
+          <h1 v-if="type >= 2" style="top: -56vh;">{{ contant[2] }}</h1>
+          <h1 v-if="type >= 3" style="top: -51vh;">{{ contant[3] }}</h1>
         </div>
         <p id="animButton" v-show="showButton" @click="closeAnimation">יאללה להמשיך</p> 
       </div>
@@ -133,7 +133,7 @@
     height: 93vh;
     width: 38vw;
     position: absolute;
-    top: 3vh;
+    top: -74vh;
     right: 31vw;
     font-size: 2.5vmin;
     text-align: center;
@@ -151,7 +151,7 @@
   height: 100vh;
   width: 100vw;
   position: absolute;
-  bottom: 0;
+  bottom: 3vh;
   left: 0;
 }
 
@@ -202,7 +202,7 @@ li {
 #animButton {
   font-family: buttons;
   position: absolute;
-  top: 60vh;
+  top: -40vh;
   left: 27vw;
 }
 
@@ -224,9 +224,10 @@ li {
 
 #helpText {
   position: absolute;
-  top: 56.7vh;
-  right: 73vw;
+  top: 0vh;
+  right: 67vw;
   font-size: small;
+  color: white;
 }
 
 .plane:hover {
@@ -243,19 +244,20 @@ li {
 
 @keyframes plane {
   0% {
-    top: 26vh;
-    right: 0vw;
-  }
-  100% {
-    top: 50vh;
-    right: 71vw;
-  }
+    top: -35vh;
+    right: -9vw;
+}
+100% {
+    top: -3vh;
+    right: 65vw;
+}
 }
 
 .typewriter h1 {
   position: absolute;
   display: block;
   right: 34vw;
+  top: -80vh;
   color: #000000;
   /* Ensures the content is not revealed until the animation */
   overflow: hidden;

@@ -66,9 +66,9 @@
         this.$emit("finishedLearning", 3);
       },
     },
-    mounted() {
-      this.nIntervId = setInterval(this.changeBg, 1500);
-    }
+    // mounted() {
+    //   this.nIntervId = setInterval(this.changeBg, 1500);
+    // }
   }
   
   
@@ -80,8 +80,10 @@
   height: 13.4vh;
   width: 10.5vw;
   position: absolute;
-  top: 21.5vh;
+  top: -50.5vh;
   left: 14.3vw;
+  z-index: 9;
+  display: block;
 }
 
 #whiteBg:hover {
@@ -95,9 +97,9 @@
 
 #blackBg {
   background-color: rgba(0, 0, 0, 0.5);
-  height: 100%;
-  width: 100%;
-  top: 0;
+  height: 101vh;
+  width: 100vw;
+  top: -75vh;
   left: 0;
   position: absolute;
 }
@@ -152,5 +154,10 @@
    7px 7px 20px 0px rgba(0,0,0,.1),
    4px 4px 5px 0px rgba(0,0,0,.1);
   outline: none;
+}
+
+#questions {
+  position: absolute;
+  top: 24vh;
 }
 </style>

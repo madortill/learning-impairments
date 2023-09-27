@@ -1,6 +1,6 @@
 <template>
     <div id="mainScreen" :class="zoomClassAnimation">
-      <div id="teacher" :class="zoomTeacherAnim"></div>
+      <img id="teacher" src="../assets/images/teacher.svg" :class="zoomTeacherAnim">
       <div id="bubbleSpeech" v-show="showBubble && text === 1">
         <h3>שלום לך! <br> היום נלמד על לקויות למידה</h3>
         <button id="startButton" @click="closeStartText" class="custom-btn btn-1">התחלנו</button>
@@ -29,10 +29,11 @@
           <p id="different" class="secondScreenTwo" v-show="currcontent >= 8">{{(myJson[8])}}</p>
           <p id="different" class="secondScreenTwo" v-show="currcontent >= 9">{{(myJson[9])}}</p>
           <p class="thirdScreenTwo" v-show="currcontent >= 10">{{(myJson[10])}}</p>
-        </div>
         <img src="../assets/images/back-arrow.png" class="backArrow arrow" @click="backText" v-show="showArrowRigth">
         <img src="../assets/images/next-arrow.png" class="nextArrow arrow" @click="nextText" v-show="showArrowLeft">
-        <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQuestions"></questions>
+        
+          <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQuestions"></questions>
+        </div>
     </div>
     
     <div id="box">
@@ -44,10 +45,11 @@
       <p>{{ myJson[29] }}</p>
       <button class="custom-btn btn-14" id="finishButton" @click="finishLomda">סיימתי את הלומדה!</button>
     </div>
-    <questions @finishQuestion="showNextQuestion" :type="numQuestion" v-if="showQues && numQuestion === 4"></questions>
-    <questions @finishQuestion="showNextQuestion" :type="numQuestion" v-if="showQues && numQuestion === 5"></questions>
-    <questions @finishQuestion="showNextQuestion" :type="numQuestion" v-if="showQues && numQuestion === 11"></questions>
-
+    <div class="question-wrapper" :style="currentStudent !== 3 ? 'display: contents': ''">
+      <questions @finishQuestion="showNextQuestion" :type="numQuestion" v-if="showQues && numQuestion === 4"></questions>
+      <questions @finishQuestion="showNextQuestion" :type="numQuestion" v-if="showQues && numQuestion === 5"></questions>
+      <questions @finishQuestion="showNextQuestion" :type="numQuestion" v-if="showQues && numQuestion === 11"></questions>
+    </div>
   </div>
       
     </div>
@@ -160,7 +162,6 @@
 
         },
         showCurrentBehavior(number) {
-          debugger
           this.finishedLearn = false;
           this.currentStudent = number;
           if (number !== (this.grayscale.length - 1) && this.firstTime) {
@@ -236,11 +237,12 @@
   height: 34vh;
   width: 39vw;
   position: absolute;
-  top: 30vh;
+  top: -29vh;
   left: 32vw;
   text-align: right;
   font-size: 2.2vmin;
   text-align: center;
+  color: rgb(201, 201, 201);
 }
 
 #text2 {
@@ -311,12 +313,13 @@ li {
     width: 54vw;
     top: 26vh;
     left: 40vw;
+    
 }
 
 
 #finishButton {
   position: absolute;
-  top: 30vh;
+  top: 23vh;
   left: 0vw;
 }
 .arrow {
@@ -395,12 +398,14 @@ h3 {
 }
 
 #teacher {
-    background-color: black;
     height: 40vh;
-    width: 7vw;
+    width: auto;
     position: absolute;
-    right: 78vw;
+    /* right: 20vw;
+    bottom: 5vh; */
+    /* transform: translateX(70%); */
     top: 40vh;
+    right: 78vw;
 } 
 
 #box {
@@ -531,7 +536,13 @@ student:hover {
 }
 .btn-1:hover {
    background: rgb(192, 191, 191);
-background: linear-gradient(0deg, rgb(192, 191, 191) 0%, rgb(192, 191, 191) 100%);
+  background: linear-gradient(0deg, rgb(192, 191, 191) 0%, rgb(192, 191, 191) 100%);
+}
+
+.question-wrapper {
+  position: absolute !important;
+  top: -52vh;
+  left: 42vw;
 }
 </style>
   

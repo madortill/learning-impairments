@@ -141,7 +141,9 @@
     position: relative;
     height: 50vh;
     width: 55vw;
-    background-color:aqua;
+    background-color:rgba(255, 255, 255, 0.969);
+    border-radius: 20px;
+    
     text-align: center;
     top: -30vh;
     left: -20vw;
@@ -298,7 +300,7 @@
 
 .button-4 {
   appearance: none;
-  background-color: #FAFBFC;
+  background-color: #bad6dd;
   border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 6px;
   box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;

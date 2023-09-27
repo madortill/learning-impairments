@@ -75,9 +75,10 @@
     position: absolute;
     height: 50vh;
     width: 55vw;
-    background-color:aqua;
+    background-color:rgba(255, 255, 255, 0.969);
+    border-radius: 20px;
     text-align: center;
-    top: 21vh;
+    top: -79vh;
     left: 24vw;
     font-size: 4vh;
   }
