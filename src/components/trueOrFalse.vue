@@ -3,11 +3,11 @@
       <div id="question">
         <p>{{ question.question }}</p>
         <button id="trueBtn" class="button-4" @click="checkAnswerTrue">נכון </button>
-        <button id="falseBtn" class="button-4" @click.once="checkAnswerFalse">לא נכון </button>
+        <button id="falseBtn" class="button-4" @click="checkAnswerFalse">לא נכון </button>
         <br><br>
-        <span v-show="showCorrect === 1" class="correct">מצוין! תשובה נכונה</span>
-        <span v-show="showCorrect === 2" class="incorrect">אופס, תשובה שגויה! נסה שוב</span>
-        <button id="closeBtn" class="button-4" @click="finish" v-if="clicked">סיימתי</button>
+        <span v-show="showCorrect === 'correct'" class="correct">מצוין! תשובה נכונה</span>
+        <span v-show="showCorrect === 'incorrect'" class="incorrect">אופס, תשובה שגויה! נסה שוב</span>
+        <button id="closeBtn" class="button-4" @click="finish" v-if="this.showCorrect === 'correct' ">סיימתי</button>
       </div>
     </div>
   </template>
@@ -22,26 +22,21 @@
     data() {
       return {
         answer: this.question.correct,
-        answer: true,
-        showCorrect: 0,
+        showCorrect: '',
         clicked: false
       };
     },
     methods: {
         checkAnswerTrue() {
-          this.clicked = true;
-          this.answer ? this.showCorrect = 1 : this.showCorrect = 2;
+          this.answer ? this.showCorrect = 'correct' : this.showCorrect = 'incorrect';
         },
         checkAnswerFalse() {
-          !this.answer ? this.showCorrect = 1 : this.showCorrect = 2;
+          !this.answer ? this.showCorrect = 'correct' : this.showCorrect = 'incorrect';
         },
         finish() {
           this.$emit("finished");
         }
     },
-    mounted() {
-      
-    }
   }
   
   

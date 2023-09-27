@@ -160,6 +160,7 @@
 
         },
         showCurrentBehavior(number) {
+          debugger
           this.finishedLearn = false;
           this.currentStudent = number;
           if (number !== (this.grayscale.length - 1) && this.firstTime) {

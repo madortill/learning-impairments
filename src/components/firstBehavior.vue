@@ -1,6 +1,6 @@
 <template>
     <div id="firstBehavior">
-      <img src="../assets/images/plain.png" v-show="showPlain" class="plain" @click="showContent">
+      <img src="../assets/images/plane.png" v-show="showplane" class="plane" @click="showContent">
       <p id="helpText" v-show="showHelp">לחצו עליי</p>
       <div class="learning" v-if="showLearning">
         <div class="text1" v-show="text === 1">
@@ -57,7 +57,7 @@
         "בעצם קורא (מלא שגיאות, קטיעות",
         "וסימני שאלה)"],
         type: 0,
-        showPlain: true,
+        showplane: true,
         showButton: false,
         myJson: json["content"][0],
         numQuestion: 2,
@@ -76,7 +76,7 @@
         else if(this.text === 2){ 
           this.showLearning = false;
           setTimeout(() => {
-            this.showPlain = false;
+            this.showplane = false;
             this.showHelp = false;
             this.$emit("startZoom");
           }, 1000);
@@ -116,7 +116,7 @@
     },
     mounted() {
       setTimeout(() => {
-        if(!this.showLearning && this.showPlain) {
+        if(!this.showLearning && this.showplane) {
           this.showHelp = true;
         }
       }, 5000);
@@ -229,19 +229,19 @@ li {
   font-size: small;
 }
 
-.plain:hover {
+.plane:hover {
   cursor: pointer;
 }
-.plain {
+.plane {
   height: 16vh;
   width: 8vw;
   position: absolute;
   top: 26vh;
   right: 0vw;
-  animation: plain 3s forwards;
+  animation: plane 3s forwards;
 }
 
-@keyframes plain {
+@keyframes plane {
   0% {
     top: 26vh;
     right: 0vw;
