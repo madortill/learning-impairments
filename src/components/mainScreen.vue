@@ -374,7 +374,7 @@ h3 {
   height: 16vh;
   width: 10vw;
   position: absolute;
-  top: 27vh;
+  top: 37vh;
   left: 23.5vw;
 }
 
@@ -404,7 +404,7 @@ h3 {
     /* right: 20vw;
     bottom: 5vh; */
     /* transform: translateX(70%); */
-    top: 40vh;
+    top: 53vh;
     right: 78vw;
 } 
 
@@ -443,7 +443,7 @@ h3 {
   }
   100% {
     right: 84vw;
-    top: 49vh;
+    top: 60vh;
   }
 }
 
