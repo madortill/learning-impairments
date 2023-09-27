@@ -22,15 +22,20 @@
             </li>
           </ul>
         </div>
-        <div id="text2" :style="learningText === 2 ? 'display: block': 'none: hidden'">
-          <p style="font-size: 3vmin;" v-show="currcontent >= 3">{{(myJson[3])}}</p>
-          <p class="different firstScreenTwo" v-show="currcontent >= 4">{{(myJson[4])}}</p>
-          <p class="different firstScreenTwo" v-show="currcontent >= 5">{{(myJson[5])}}</p>
-          <p style="font-size: 3vmin;" v-show="currcontent >= 6">{{(myJson[6])}}</p>
-          <p class="different secondScreenTwo" v-show="currcontent >= 7">{{(myJson[7])}}</p>
-          <p class="different secondScreenTwo" v-show="currcontent >= 8">{{(myJson[8])}}</p>
-          <p class="different secondScreenTwo" v-show="currcontent >= 9">{{(myJson[9])}}</p>
-          <p class="thirdScreenTwo" v-show="currcontent >= 10">{{(myJson[10])}}</p>
+        <div id="text2" :style="learningText === 2 ? 'display: block': 'display: none'">
+          <p :style="`font-size: 3vmin; visibility: ${currcontent >= 3 ? 'visible': 'hidden'}`">{{(myJson[3])}}</p>
+          <div>
+            <p class="different firstScreenTwo" :style="`visibility: ${currcontent >= 4 ? 'visible': 'hidden'}`">{{(myJson[4])}}</p>
+            <p class="different firstScreenTwo" :style="`visibility: ${currcontent >= 5 ? 'visible': 'hidden'}`">{{(myJson[5])}}</p>
+          </div>
+          <p :style="`font-size: 3vmin; visibility: ${currcontent >= 6 ? 'visible': 'hidden'}`">{{(myJson[6])}}</p>
+          <br>
+          <div>
+            <p class="different secondScreenTwo" :style="`visibility: ${currcontent >= 7 ? 'visible': 'hidden'}`">{{(myJson[7])}}</p>
+            <p class="different secondScreenTwo" :style="`visibility: ${currcontent >= 8 ? 'visible': 'hidden'}`">{{(myJson[8])}}</p>
+            <p class="different secondScreenTwo" :style="`visibility: ${currcontent >= 9 ? 'visible': 'hidden'}`">{{(myJson[9])}}</p>
+          </div>
+          <p class="thirdScreenTwo" :style="`visibility: ${currcontent >= 10 ? 'visible': 'hidden'}`">{{(myJson[10])}}</p>
         </div>
         <img src="../assets/images/back-arrow.svg" class="backArrow arrow" @click="backText" v-show="showArrowRigth">
         <img src="../assets/images/next-arrow.svg" class="nextArrow arrow" @click="nextText" v-show="showArrowLeft">
@@ -258,20 +263,10 @@
   height: 13vh;
   width: 9vw;
   float: right;
-  position: relative;
-  background-color: aliceblue;
+  background-color: #cbdfe0;
+  color: black;
   border-radius: 1vh;
   margin-right: 1vw;
-}
-
-.firstScreenTwo {
-  right: 15vw;
-  top: -8vh;
-}
-
-.secondScreenTwo {
-  right: 19vw;
-  top: -14vh;
 }
 
 /* Text on board */
@@ -306,6 +301,8 @@
 #text2 {
   font-size: 2vmin;
   text-align: center;
+  height: 100%;
+  width: 100%;
 }
 
 
@@ -352,6 +349,10 @@
 h3 {
     text-align: center;
     margin: 1vh;
+}
+
+p {
+  direction: rtl;
 }
 
 #bubbleSpeech {
@@ -477,7 +478,6 @@ h3 {
    4px 4px 5px 0px rgba(0,0,0,.1);
   outline: none;
 }
-/* 14 */
 .btn-14 {
   background: #22c1c9;
   border: none;
