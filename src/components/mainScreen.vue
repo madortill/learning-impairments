@@ -401,9 +401,6 @@ h3 {
     height: 40vh;
     width: auto;
     position: absolute;
-    /* right: 20vw;
-    bottom: 5vh; */
-    /* transform: translateX(70%); */
     top: 53vh;
     right: 78vw;
 } 
@@ -438,12 +435,10 @@ h3 {
 
 @keyframes zoomTeacher {
   0% {
-    right: 78vw;
-    top: 40vh;
+    transform: scale(100%, 100%);
   }
   100% {
-    right: 84vw;
-    top: 60vh;
+    transform: scale(170%, 170%) translate(-50%, 10%);
   }
 }
 
