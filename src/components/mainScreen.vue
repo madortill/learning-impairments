@@ -20,7 +20,7 @@
             </li>
           </ul>
         </div>
-        <div id="text2" v-show="learningText === 2">
+        <div id="text2" v-show="learningText === 2 || learningText === 1">
           <p style="font-size: 3vmin; top: -4vh; position: relative; right: -1vw;" v-show="currcontent >= 3">{{(myJson[3])}}</p>
           <p id="different" class="firstScreenTwo" v-show="currcontent >= 4">{{(myJson[4])}}</p>
           <p id="different" class="firstScreenTwo" v-show="currcontent >= 5">{{(myJson[5])}}</p>
