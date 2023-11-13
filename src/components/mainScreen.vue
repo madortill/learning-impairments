@@ -3,24 +3,23 @@
       <img id="teacher" src="../assets/images/teacher.svg" :class="zoomTeacherAnim">
       <div id="bubbleSpeech" v-show="showBubble && text === 1">
         <h3>שלום לך! <br> היום נלמד על לקויות למידה</h3>
-        <button id="startButton" @click="closeStartText" class="custom-btn btn-1">התחלנו</button>
+        <button id="startButton" @click="showLearning" class="custom-btn btn-1">התחלנו</button>
     </div>
-    <div id="secBubbleSpeech" v-show="showBubble && text === 2">
-        <h3>!ועכשיו, לחצו על המקרן וחשפו את החומר</h3>
-        <div id="projector" @click="showLearning">CLICK ME</div>
-    </div>
-    <div id="learningText" v-show="showLearningText">
-        <div v-show="learningText === 1">
-          <p id="lineHead">מהי לקות למידה?</p>
-          <br>
-          <p id="text1">{{(myJson[1])}}</p>
-          <ul style="position: relative; left: 2vw;">
+    
+    <div class="learningText" v-show="showLearningText" >
+        <div class="containerText" v-show="learningText === 1">
+          <div id="lineHead">מהי לקות למידה?</div>
+          <!-- <br> -->
+          <div id="text1">{{(myJson[1])}}</div>
+          <!-- style="position: relative; left: 2vw;" -->
+          <ul>
             <li v-for="(sent, index) in content" :key="index" v-show="currcontent === 2">
               <span>{{ sent }}</span>
             </li>
           </ul>
+          <img src="../assets/images/next-arrow.png" class="nextArrow arrow" @click="nextText" v-show="showArrowLeft">
         </div>
-        <div id="text2" v-show="learningText === 2 || learningText === 1">
+        <!-- <div id="text2" v-show="learningText === 2 || learningText === 1">
           <p style="font-size: 3vmin; top: -4vh; position: relative; right: -1vw;" v-show="currcontent >= 3">{{(myJson[3])}}</p>
           <p id="different" class="firstScreenTwo" v-show="currcontent >= 4">{{(myJson[4])}}</p>
           <p id="different" class="firstScreenTwo" v-show="currcontent >= 5">{{(myJson[5])}}</p>
@@ -33,7 +32,7 @@
         <img src="../assets/images/next-arrow.png" class="nextArrow arrow" @click="nextText" v-show="showArrowLeft">
         
           <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQuestions"></questions>
-        </div>
+        </div> -->
     </div>
     
     <div id="box">
@@ -105,22 +104,20 @@
       };
     },
     methods: {
-        closeStartText() {
-            this.text = 0;
+        showLearning() {
+          this.text = 0;
             this.showStudents = false;
             this.zoomClassAnimation = 'zoomClassAnim';
             this.zoomTeacherAnim = 'zoomTeacherAnim';
             setTimeout(() => {
                 this.text = 2;
             }, 3500);
-        },
-        showLearning() {
-            this.showLearningText = true;
-            this.showBubble = false;
             setTimeout(() => {
+              this.showLearningText = true;
+              this.showBubble = false;
               this.currcontent++;
               this.showArrowLeft = true;
-            }, 2000);
+            }, 2500);
         },
         backText() {
             if(this.learningText === 2){
@@ -264,7 +261,7 @@
   width: 9vw;
   float: right;
   position: relative;
-  background-color: aliceblue;
+  background-color: black;
   border-radius: 1vh;
   margin-right: 1vw;
 }
@@ -282,37 +279,43 @@
 li {
   direction: rtl;
   text-align: right;
-  position: relative;
-  right: 30vw;
-  font-size: 3vmin;
+  font-size: 3.2vmin;
 }
 
 #lineHead {
   font-size: 4.5vmin;
   font-weight: bold;
-  position: absolute;
   text-align: center;
+  /* position: absolute;
   left: 5vw;
   margin: 0;
-  top: -5vh;
+  top: -5vh; */
 }
 
 #text1 {
   height: 10vh;
-  width: 40vw;
+  width: 60vw;
   font-size: 3.2vmin;
+  direction: rtl;
   text-align: center;
-  position: relative;
+  /* position: relative;
   left: -8vw;
-  top: -2vh;
+  top: -2vh; */
 }
 
-#learningText {
-    position: absolute;
-    height: 38vh;
-    width: 54vw;
-    top: 26vh;
-    left: 40vw;
+.learningText {
+  color: white;
+  height: 100vh;
+  width: 95vw;
+  /* position: absolute;
+  top: 26vh;
+  left: 40vw; */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
     
 }
 
@@ -538,6 +541,16 @@ student:hover {
   position: absolute !important;
   top: -52vh;
   left: 42vw;
+}
+
+.containerText{
+  display: flex;
+  height: 50vh;
+  width: 70vw;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
   

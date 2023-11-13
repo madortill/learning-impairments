@@ -1,6 +1,8 @@
 <template>
   <div class="ignore">
-    <img :src="`/learning-impairments/student${studentNum}.svg`" :class="`stud${studentNum}`" @click="openStudent"
+    <!-- <img :src="`/learning-impairments/student${studentNum}.svg`" :class="`stud${studentNum}`" @click="openStudent"
+    :style="countGrey !== 0.9 ? '': 'cursor: default'"> -->
+    <img :src="`@/assets/student${studentNum}.svg`" :class="`stud${studentNum}`" @click="openStudent"
     :style="countGrey !== 0.9 ? '': 'cursor: default'">
   </div>
 </template>

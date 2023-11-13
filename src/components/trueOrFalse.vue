@@ -53,6 +53,7 @@
     top: -25vh;
     left: -15vw;
     font-size: 4vh;
+    color: black;
 }
 
 #question{
