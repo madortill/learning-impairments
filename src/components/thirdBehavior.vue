@@ -91,7 +91,7 @@
       closeStartText() {
         this.showText = false;
         this.$emit("startZoom");
-        setTimeout(() => {
+        // setTimeout(() => {
           this.showAnim = true;
           this.animations[0] = "firstAnim";
           this.animations[1] = "secAnim";
@@ -115,10 +115,10 @@
                 this.showQues = true;
                 // this.$emit("startZoomOut");
                 // this.$emit("finishedLearning", 2);
-              }, 3000);
+              }, 300);
             }
           }, 500);
-        }, 3000);
+        // }, 3000);
       },
       showNext() {
         this.numQuestion = 0;
@@ -165,6 +165,7 @@
 
 #thirdNum {
   visibility: visible;
+  margin-bottom: 25vh;
 }
 
 .firstAnim {
@@ -207,6 +208,7 @@
 
 .thirdAnim {
   animation: thirdAnim 4s forwards;
+  margin-bottom: 40vh;
 }
 
 @keyframes thirdAnim {

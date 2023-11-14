@@ -2,12 +2,17 @@
   <div class="ignore">
     <!-- <img :src="`/learning-impairments/student${studentNum}.svg`" :class="`stud${studentNum}`" @click="openStudent"
     :style="countGrey !== 0.9 ? '': 'cursor: default'"> -->
-    <img :src="`@/assets/student${studentNum}.svg`" :class="`stud${studentNum}`" @click="openStudent"
+    <img :src="`student${studentNum}.svg`" :class="`stud${studentNum}`" @click="openStudent"
     :style="countGrey !== 0.9 ? '': 'cursor: default'">
   </div>
 </template>
      
 <script>
+import '@/assets/student0.svg'
+import '@/assets/student1.svg'
+import '@/assets/student2.svg'
+import '@/assets/student3.svg'
+
 export default {
   name: "student",
   components: {},

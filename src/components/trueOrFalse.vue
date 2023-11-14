@@ -1,13 +1,15 @@
 <template>
     <div id="trueOrFalse">
-      <div id="question">
-        <p>{{ question.question }}</p>
-        <button id="trueBtn" class="button-4" @click="checkAnswerTrue">נכון </button>
-        <button id="falseBtn" class="button-4" @click="checkAnswerFalse">לא נכון </button>
-        <br><br>
-        <span v-show="showCorrect === 'correct'" class="correct">מצוין! תשובה נכונה</span>
-        <span v-show="showCorrect === 'incorrect'" class="incorrect">אופס, תשובה שגויה! נסה שוב</span>
-        <button id="closeBtn" class="button-4" @click="finish" v-if="this.showCorrect === 'correct' ">סיימתי</button>
+      <div class="container">
+        <div id="question">
+          <p>{{ question.question }}</p>
+          <button id="trueBtn" class="button-4" @click="checkAnswerTrue">נכון </button>
+          <button id="falseBtn" class="button-4" @click="checkAnswerFalse">לא נכון </button>
+          <br><br>
+          <span v-show="showCorrect === 'correct'" class="correct">מצוין! תשובה נכונה</span>
+          <span v-show="showCorrect === 'incorrect'" class="incorrect">אופס, תשובה שגויה! נסה שוב</span>
+          <button id="closeBtn" class="button-4" @click="finish" v-if="this.showCorrect === 'correct' ">סיימתי</button>
+        </div>
       </div>
     </div>
   </template>
@@ -44,14 +46,28 @@
     
 <style scoped>
 #trueOrFalse {
-    position: relative;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  bottom: 0vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  /* position: relative;
+  z-index: 5; */
+}
+
+.container {
+  position: relative;
     height: 50vh;
     width: 55vw;
     background-color:rgba(255, 255, 255, 0.969);
     border-radius: 20px;
     text-align: center;
-    top: -25vh;
-    left: -15vw;
+    /* top: -25vh;
+    left: -15vw; */
     font-size: 4vh;
     color: black;
 }

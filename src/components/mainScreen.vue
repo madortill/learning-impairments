@@ -6,8 +6,8 @@
         <button id="startButton" @click="showLearning" class="custom-btn btn-1">התחלנו</button>
     </div>
     
-    <div class="learningText" v-show="showLearningText" >
-        <div class="containerText" v-show="learningText === 1">
+    <div class="learningText" v-if="showLearningText && learningText === 1" >
+        <div class="containerText" >
           <div id="lineHead">מהי לקות למידה?</div>
           <!-- <br> -->
           <div id="text1">{{(myJson[1])}}</div>
@@ -30,10 +30,32 @@
           <p class="thirdScreenTwo" v-show="currcontent >= 10">{{(myJson[10])}}</p>
         <img src="../assets/images/back-arrow.png" class="backArrow arrow" @click="backText" v-show="showArrowRigth">
         <img src="../assets/images/next-arrow.png" class="nextArrow arrow" @click="nextText" v-show="showArrowLeft">
-        
-          <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQuestions"></questions>
+        <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQuestions"></questions>
         </div> -->
     </div>
+
+    <div id="text2" v-if="showLearningText && (learningText === 2 || learningText === 1)">
+      <div class="conDiffrerent" >
+        <div>
+            <p style="font-size: 3vmin;" v-show="currcontent >= 3">{{(myJson[3])}}</p>
+            <p id="different" class="firstScreenTwo" v-show="currcontent >= 4">{{(myJson[4])}}</p>
+            <p id="different" class="firstScreenTwo" v-show="currcontent >= 5">{{(myJson[5])}}</p>
+        </div>
+        <div >
+            <p style="font-size: 3vmin;" v-show="currcontent >= 6">{{(myJson[6])}}</p>
+            <p id="different" class="secondScreenTwo" v-show="currcontent >= 7">{{(myJson[7])}}</p>
+            <p id="different" class="secondScreenTwo" v-show="currcontent >= 8">{{(myJson[8])}}</p>
+            <p id="different" class="secondScreenTwo" v-show="currcontent >= 9">{{(myJson[9])}}</p>
+        </div>
+      </div>
+      <div class="conArrow">
+        <img src="../assets/images/back-arrow.png" class="arrow" @click="backText" v-show="showArrowRigth">
+        <p class="thirdScreenTwo" v-show="currcontent >= 10">{{(myJson[10])}}</p>
+        <img src="../assets/images/next-arrow.png" class="arrow" @click="nextText" v-show="showArrowLeft">
+      </div>
+    </div>
+
+    <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQuestions"></questions>
     
     <div id="box">
     <student v-for="(percent, index) in grayscale" :finish="finishesStud" class="stud" ref="studs" :countGrey="percent" @changeGrey="showCurrentBehavior(index)" :studentNum="index" :key="index" v-if="showStudents"></student>
@@ -127,6 +149,7 @@
             } 
         },
         nextText() {
+          // console.log("gili");
             if(this.learningText === 1) { 
                 this.learningText = 2;
                 this.showArrowLeft = false;
@@ -145,9 +168,11 @@
             } 
         },
         showNext() {
+          console.log("gili");
           this.showLearningText = false;
           this.showArrowRigth = false;
           this.showArrowLeft = false;
+          this.showQuestions = false;
           this.zoomClassAnimation = 'zoomOutClassAnim';
           this.zoomTeacherAnim = 'zoomOutTeacherAnim';
           setTimeout(() => {
@@ -230,6 +255,7 @@
     width: 100vw;
 }
 
+
 #finishText {
   height: 34vh;
   width: 39vw;
@@ -245,31 +271,40 @@
 #text2 {
   font-size: 2vmin;
   text-align: center;
+  display: flex;
+  direction: rtl;
+  color: white;
+  height: 90vh;
+  width: 95vw;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .thirdScreenTwo {
-  position: absolute;
   width: 30vw;
-  height: 2vh;
+  height: 10vh;
+  /* position: absolute;
   right: 28vw;
-  top: 18vh;
+  top: 18vh; */
   font-size: 2.5vmin;
 }
 
 #different {
-  height: 13vh;
+  height: 14vh;
   width: 9vw;
   float: right;
-  position: relative;
+  /* position: relative; */
   background-color: black;
   border-radius: 1vh;
   margin-right: 1vw;
 }
 
-.firstScreenTwo {
+/* .firstScreenTwo {
   right: 15vw;
   top: -8vh;
-}
+} */
 
 .secondScreenTwo {
   right: 19vw;
@@ -328,8 +363,8 @@ li {
 .arrow {
     height: 9vh;
     width: 4vw;
-    position: absolute;
-    top: 32vh;
+    /* position: absolute;
+    top: 32vh; */
 }
 
 #projector:hover,
@@ -337,13 +372,13 @@ li {
   cursor: pointer;
 }
 
-.backArrow {
+/* .backArrow {
     right: 17vw;
-}
+} */
 
-.nextArrow {
+/* .nextArrow {
     right: 64vw;
-}
+} */
 
 #projector {
     position: absolute;
@@ -543,13 +578,28 @@ student:hover {
   left: 42vw;
 }
 
-.containerText{
+.containerText {
   display: flex;
   height: 50vh;
   width: 70vw;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: space-between;
+  align-items: center;
+}
+
+.conDiffrerent {
+  width: 65vw;
+  height: 30vh;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.conArrow {
+  width: 40vw;
+  height: 15vh;
+  display: flex;
   align-items: center;
 }
 </style>

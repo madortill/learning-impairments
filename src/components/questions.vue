@@ -43,6 +43,9 @@
   </script>
     
 <style scoped>
-
+#question {
+  position: absolute;
+  z-index: 3;
+}
 </style>
   
