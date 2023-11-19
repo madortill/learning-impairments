@@ -93,7 +93,6 @@
       closeStartText() {
         this.showText = false;
         this.$emit("startZoom");
-        // setTimeout(() => {
           this.showAnim = true;
           this.animations[0] = "firstAnim";
           this.animations[1] = "secAnim";
@@ -115,12 +114,9 @@
               setTimeout(() => { 
                 this.showAnim = false;
                 this.showQues = true;
-                // this.$emit("startZoomOut");
-                // this.$emit("finishedLearning", 2);
               }, 300);
             }
           }, 500);
-        // }, 3000);
       },
       showNext() {
         this.numQuestion = 0;
@@ -251,11 +247,7 @@
 }
 
 #numbers {
-  /* position: absolute; */
   z-index: 5;
-  /* top: -18vh;
-  left: 30vw; */
-  /* margin-bottom: 20vh; */
   font-size: 4vmin;
 }
 
@@ -267,7 +259,6 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  /* margin-bottom: 2%; */
 }
 
 #text {
@@ -325,9 +316,4 @@ li {
   text-align: right;
 }
 
-/* #questions {
-  position: absolute;
-    top: -100vh;
-    left: 0;
-} */
 </style>

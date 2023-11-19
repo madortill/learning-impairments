@@ -9,9 +9,7 @@
     <div class="learningText" v-if="showLearningText && learningText === 1" >
         <div class="containerText" >
           <div id="lineHead">מהי לקות למידה?</div>
-          <!-- <br> -->
           <div id="text1">{{(myJson[1])}}</div>
-          <!-- style="position: relative; left: 2vw;" -->
           <ul>
             <li v-for="(sent, index) in content" :key="index" v-show="currcontent === 2">
               <span>{{ sent }}</span>
@@ -19,19 +17,6 @@
           </ul>
           <img src="../assets/images/next-arrow.png" class="nextArrow arrow" @click="nextText" v-show="showArrowLeft">
         </div>
-        <!-- <div id="text2" v-show="learningText === 2 || learningText === 1">
-          <p style="font-size: 3vmin; top: -4vh; position: relative; right: -1vw;" v-show="currcontent >= 3">{{(myJson[3])}}</p>
-          <p id="different" class="firstScreenTwo" v-show="currcontent >= 4">{{(myJson[4])}}</p>
-          <p id="different" class="firstScreenTwo" v-show="currcontent >= 5">{{(myJson[5])}}</p>
-          <p style="font-size: 3vmin; top: -10.5vh; position: relative; right: 17vw;" v-show="currcontent >= 6">{{(myJson[6])}}</p>
-          <p id="different" class="secondScreenTwo" v-show="currcontent >= 7">{{(myJson[7])}}</p>
-          <p id="different" class="secondScreenTwo" v-show="currcontent >= 8">{{(myJson[8])}}</p>
-          <p id="different" class="secondScreenTwo" v-show="currcontent >= 9">{{(myJson[9])}}</p>
-          <p class="thirdScreenTwo" v-show="currcontent >= 10">{{(myJson[10])}}</p>
-        <img src="../assets/images/back-arrow.png" class="backArrow arrow" @click="backText" v-show="showArrowRigth">
-        <img src="../assets/images/next-arrow.png" class="nextArrow arrow" @click="nextText" v-show="showArrowLeft">
-        <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQuestions"></questions>
-        </div> -->
     </div>
 
     <div id="text2" v-if="showLearningText && (learningText === 2 || learningText === 1)">
@@ -58,7 +43,7 @@
     <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQuestions"></questions>
     
     <div id="box">
-    <student v-for="(percent, index) in grayscale" :finish="finishesStud" class="stud" ref="studs" :countGrey="percent" @changeGrey="showCurrentBehavior(index)" :studentNum="index" :key="index" v-if="showStudents"></student>
+    <student v-for="(percent, index) in grayscale" :finish="finishesStud" class="stud" ref="studs" :countGrey="percent" @changeGrey="showCurrentBehavior(index)" :Num="index" :key="index" v-if="showStudents"></student>
     <component :is="`behavior${currentStudent + 1}`" v-if="showBehavior" @finishedLearning="finished" @finish="finishedCurrLearning" @startZoom="zoomBg" @startZoomOut="zoomOutBg"></component>
     <div v-show="finishedLearn" id="finishText">
       <p>{{ myJson[27] }}</p>
@@ -149,7 +134,6 @@
             } 
         },
         nextText() {
-          // console.log("gili");
             if(this.learningText === 1) { 
                 this.learningText = 2;
                 this.showArrowLeft = false;
@@ -285,9 +269,6 @@
 .thirdScreenTwo {
   width: 30vw;
   height: 10vh;
-  /* position: absolute;
-  right: 28vw;
-  top: 18vh; */
   font-size: 2.5vmin;
 }
 
@@ -295,16 +276,10 @@
   height: 14vh;
   width: 9vw;
   float: right;
-  /* position: relative; */
   background-color: black;
   border-radius: 1vh;
   margin-right: 1vw;
 }
-
-/* .firstScreenTwo {
-  right: 15vw;
-  top: -8vh;
-} */
 
 .secondScreenTwo {
   right: 19vw;
@@ -321,10 +296,6 @@ li {
   font-size: 4.5vmin;
   font-weight: bold;
   text-align: center;
-  /* position: absolute;
-  left: 5vw;
-  margin: 0;
-  top: -5vh; */
 }
 
 #text1 {
@@ -333,18 +304,12 @@ li {
   font-size: 3.2vmin;
   direction: rtl;
   text-align: center;
-  /* position: relative;
-  left: -8vw;
-  top: -2vh; */
 }
 
 .learningText {
   color: white;
   height: 100vh;
   width: 95vw;
-  /* position: absolute;
-  top: 26vh;
-  left: 40vw; */
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -363,22 +328,12 @@ li {
 .arrow {
     height: 9vh;
     width: 4vw;
-    /* position: absolute;
-    top: 32vh; */
 }
 
 #projector:hover,
 .arrow:hover {
   cursor: pointer;
 }
-
-/* .backArrow {
-    right: 17vw;
-} */
-
-/* .nextArrow {
-    right: 64vw;
-} */
 
 #projector {
     position: absolute;
@@ -425,7 +380,6 @@ h3 {
 }
 
 #secBubbleSpeech {
-    /* background-color: rgb(247, 247, 247); */
   background-image: url("@/assets/images/bubble.svg");
   background-size: 100% 100%;
   height: 16vh;
@@ -446,7 +400,6 @@ h3 {
 #box {
     display: flex;
     justify-content: space-between;
-    /* height: 100%; */
     width: 100%;
     flex-wrap: wrap;
     align-content: flex-end;
@@ -467,7 +420,6 @@ h3 {
   }
   100% {
     background-size: 170vw 170vh;
-    /* background-position: 50% 80%; */
   }
 }
 

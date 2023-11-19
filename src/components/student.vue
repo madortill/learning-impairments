@@ -1,17 +1,11 @@
 <template>
   <div class="ignore">
-    <!-- <img :src="`/learning-impairments/student${studentNum}.svg`" :class="`stud${studentNum}`" @click="openStudent"
-    :style="countGrey !== 0.9 ? '': 'cursor: default'"> -->
     <img :src="`student${studentNum}.svg`" :class="`stud${studentNum}`" @click="openStudent"
     :style="countGrey !== 0.9 ? '': 'cursor: default'">
   </div>
 </template>
      
 <script>
-import '@/assets/student0.svg'
-import '@/assets/student1.svg'
-import '@/assets/student2.svg'
-import '@/assets/student3.svg'
 
 export default {
   name: "student",
@@ -44,28 +38,20 @@ export default {
     
 <style scoped>
 .stud0 {
-  /* margin-bottom: 3vh; */
-  /* height: 26vh; */
   margin-top: -2vh;
   width: 25vw;
   filter: grayscale(v-bind(countGrey));
 }
 .stud1 {
-  /* margin-bottom: 3vh; */
-  /* height: 26vh; */
   margin-top: -5vh;
   width: 21vw;
   filter: grayscale(v-bind(countGrey));
 }
 .stud2 {
-  /* margin-bottom: 3vh; */
-  /* height: 26vh; */
   width: 20vw;
   filter: grayscale(v-bind(countGrey));
 }
 .stud3 {
-  /* margin-bottom: 3vh; */
-  /* height: 26vh; */
   margin-top: -1vh;
   width: 23vw;
   filter: grayscale(v-bind(countGrey));

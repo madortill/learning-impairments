@@ -3,9 +3,7 @@
       <div id="question">
         <p>{{ question.question }}</p>
         <input type="text" id="answer" v-model="inputValue">
-        <!-- <button id="checkButton" @click="checkAnswer">בדיקה</button>  -->
         <button class="button-4" role="button" id="checkButton" @click="checkAnswer">בדיקה</button>
-        <!-- <button class="custom-btn btn-15" id="checkButton" @click="checkAnswer">בדיקה</button> -->
         <br><br>
         <span v-if="!showAnswer && checked" class="emptyMsg">אופס, נראה שלא ענית על השאלה</span>
         <div v-show="showAnswer">תשובה נכונה: {{ question.correct }}</div>

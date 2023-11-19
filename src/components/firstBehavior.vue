@@ -30,7 +30,6 @@
           <h1 v-if="type >= 0" style="top: -66vh;">{{ contant[0] }}</h1>
           <h1 v-if="type >= 1" style="top: -61vh;">{{ contant[1] }}</h1>
           <h1 v-if="type >= 2" style="top: -56vh;">{{ contant[2] }}</h1>
-          <!-- <h1 v-if="type >= 3" style="top: -51vh;">{{ contant[3] }}</h1> -->
         </div>
         <p id="animButton" v-show="showButton" @click="closeAnimation">יאללה להמשיך</p> 
       </div>
@@ -53,8 +52,8 @@
         text: 1,
         showAnimation: false,
         contant: ["די---סקלצקיה:",
-        "קו?$שי ברחי??שט ------&&?$?? ",
-        "מיומ?&מנויווט אכ  ריה",],
+        "קו  שי ברח  איש   ט",
+        "מומנ  וט  אכרי אה",],
         type: 0,
         showplane: true,
         showButton: false,

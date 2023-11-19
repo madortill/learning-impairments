@@ -55,8 +55,6 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  /* position: relative;
-  z-index: 5; */
 }
 
 .container {
@@ -66,8 +64,6 @@
     background-color:rgba(255, 255, 255, 0.969);
     border-radius: 20px;
     text-align: center;
-    /* top: -25vh;
-    left: -15vw; */
     font-size: 4vh;
     color: black;
 }

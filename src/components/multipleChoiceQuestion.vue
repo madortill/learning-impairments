@@ -83,19 +83,11 @@
     font-size: 4vh;
   }
   
-  .list {
-    /* display: flex; */
-  }
 
   li {
-    /* text-align: right; */
-    /* top: 20%; */
     left: 50%;
-    /* position: absolute; */
     direction: rtl;
     display: flex;
-    /* flex-direction: column; */
-    /* transform: translate(50%); */
   }
   .indication {
     width: 1rem;

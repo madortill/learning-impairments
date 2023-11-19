@@ -20,7 +20,6 @@
             </li>
           </ul>
         </div>
-        <!-- <button id="continueButton" @click="closeText" v-show="showText">להמשיך</button> -->
         <button class="custom-btn btn-2" id="continueButton" @click="closeText" v-show="showText">להמשיך</button>
       </div>
       <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQues && numQuestion === 6"></questions>
@@ -66,9 +65,6 @@
         this.$emit("finishedLearning", 3);
       },
     },
-    // mounted() {
-    //   this.nIntervId = setInterval(this.changeBg, 1500);
-    // }
   }
   
   
