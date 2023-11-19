@@ -1,22 +1,20 @@
 <template>
     <div class="wrapper">
-      <open-screen v-if="screen === 1" @done="switchScreen"></open-screen>
       <main-screen v-if="screen === 2" @done="switchScreen"></main-screen>
       <endScreen v-if="screen === 3" @done="switchScreen"></endScreen>
     </div>
 </template>
 
 <script>
-
 import mainScreen from './components/mainScreen.vue'
 import endScreen from './components/endScreen.vue'
 
 export default {
   name: "app",
-  components: { openScreen, mainScreen, endScreen},
+  components: {mainScreen, endScreen},
   data() {
     return {
-      screen: 1,
+      screen: 2,
     };
   },
   methods: {
