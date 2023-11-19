@@ -6,6 +6,10 @@
 </template>
      
 <script>
+// import '@/assets/student0.svg'
+// import '@/assets/student1.svg'
+// import '@/assets/student2.svg'
+// import '@/assets/student3.svg'
 
 export default {
   name: "student",

@@ -43,7 +43,7 @@
     <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQuestions"></questions>
     
     <div id="box">
-    <student v-for="(percent, index) in grayscale" :finish="finishesStud" class="stud" ref="studs" :countGrey="percent" @changeGrey="showCurrentBehavior(index)" :Num="index" :key="index" v-if="showStudents"></student>
+    <student v-for="(percent, index) in grayscale" :finish="finishesStud" class="stud" ref="studs" :countGrey="percent" @changeGrey="showCurrentBehavior(index)" :studentNum="index" :key="index" v-if="showStudents"></student>
     <component :is="`behavior${currentStudent + 1}`" v-if="showBehavior" @finishedLearning="finished" @finish="finishedCurrLearning" @startZoom="zoomBg" @startZoomOut="zoomOutBg"></component>
     <div v-show="finishedLearn" id="finishText">
       <p>{{ myJson[27] }}</p>
