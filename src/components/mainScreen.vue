@@ -504,7 +504,7 @@ h3 {
   }
   100% {
     right: 78vw;
-    top: 40vh;
+    top: 53vh;
   }
 }
 

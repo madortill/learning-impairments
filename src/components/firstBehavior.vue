@@ -30,7 +30,7 @@
           <h1 v-if="type >= 0" style="top: -66vh;">{{ contant[0] }}</h1>
           <h1 v-if="type >= 1" style="top: -61vh;">{{ contant[1] }}</h1>
           <h1 v-if="type >= 2" style="top: -56vh;">{{ contant[2] }}</h1>
-          <h1 v-if="type >= 3" style="top: -51vh;">{{ contant[3] }}</h1>
+          <!-- <h1 v-if="type >= 3" style="top: -51vh;">{{ contant[3] }}</h1> -->
         </div>
         <p id="animButton" v-show="showButton" @click="closeAnimation">יאללה להמשיך</p> 
       </div>
@@ -52,10 +52,9 @@
         showHelp: false,
         text: 1,
         showAnimation: false,
-        contant: ["אנימציה של הקלדה של משפטים שהוא",
-        "קורא מהלוח ובהקלדה יראו איך הוא",
-        "בעצם קורא (מלא שגיאות, קטיעות",
-        "וסימני שאלה)"],
+        contant: ["די---סקלצקיה:",
+        "קו?$שי ברחי??שט ------&&?$?? ",
+        "מיומ?&מנויווט אכ  ריה",],
         type: 0,
         showplane: true,
         showButton: false,

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import openScreen from './components/openScreen.vue'
+
 import mainScreen from './components/mainScreen.vue'
 import endScreen from './components/endScreen.vue'
 
@@ -16,7 +16,7 @@ export default {
   components: { openScreen, mainScreen, endScreen},
   data() {
     return {
-      screen: 2,
+      screen: 1,
     };
   },
   methods: {

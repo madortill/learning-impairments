@@ -2,7 +2,7 @@
     <div id="thirdBehavior">
       <div id="text" v-show="showText">
         <p id="head">דיסקלקוליה</p>
-        <p style="text-align: center; position: relative; top: -2.5vh;">{{ myJson[22] }}</p>
+        <p style="text-align: center; position: relative; top: -2.5vh;">{{ myJson[22]}} </p>
         <div id="listsText">
           <div id="firstList">
             <p>{{ myJson[23] }}</p>
@@ -27,6 +27,7 @@
       <questions @finishQuestion="showNext" :type="numQuestion" v-if="showQues && numQuestion === 7"></questions>
       <div id="animations" v-if="showAnim">
         <img src="../assets/images/eyes.svg" id="eyes" class="eyes">
+        <div class="container">
         <div id="numbers">
           <p id="firstExer"> 
             <span>3</span>
@@ -58,6 +59,7 @@
             <span v-if="showOne">1111 </span>
           </p>
         </div>
+      </div>
       </div>
     </div>
   </template>
@@ -169,6 +171,7 @@
 }
 
 .firstAnim {
+
   animation: firstAnim 4s forwards;
 }
 
@@ -227,16 +230,16 @@
 }
 
 #firstExer {
-  left: 5vw;
+  margin-left: 5vw;
 }
 
 #secExer {
-  left: 28vw;
-  top: -8vh;
+  margin-left: 28vw;
+  margin-top: -8vh;
 }
 
 #thirdExer {
-  left: 15vw;
+  margin-left: 15vw;
 }
 
 .eyes {
@@ -248,11 +251,23 @@
 }
 
 #numbers {
-  position: absolute;
+  /* position: absolute; */
   z-index: 5;
-  top: -18vh;
-  left: 30vw;
+  /* top: -18vh;
+  left: 30vw; */
+  /* margin-bottom: 20vh; */
   font-size: 4vmin;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  /* margin-bottom: 2%; */
 }
 
 #text {
@@ -310,9 +325,9 @@ li {
   text-align: right;
 }
 
-#questions {
-  /* position: absolute;
+/* #questions {
+  position: absolute;
     top: -100vh;
-    left: 0; */
-}
+    left: 0;
+} */
 </style>

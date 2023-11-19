@@ -1,6 +1,7 @@
 <template>
     <div id="endScreen">
-      
+      <div class="text" > כל בכבוד לכם !</div>
+      <div class="text">סיימתם את הלומדה בהצלחה</div>
     </div>
   </template>
      
@@ -26,12 +27,25 @@
   </script>
     
 <style scoped>
-#background {
-    background-image: url("../assets/images/bgOpenScreen.jpg");
+#endScreen {
+    background-image: url("../assets/images/classroom.svg");
     background-repeat: no-repeat;
-    background-size: 100vw 100vh;
+    background-size: 170vw 170vh;
+    background-position: 50% 80%;
     height: 100vh;
     width: 100vw;
+    direction: rtl;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.text{
+  text-align: center;
+  font-size: 5vh;
 }
 </style>
   
