@@ -2,7 +2,7 @@
     <div id="mainScreen" :class="zoomClassAnimation">
       <img id="teacher" src="../assets/images/teacher.svg" :class="zoomTeacherAnim">
       <div id="bubbleSpeech" v-show="showBubble && text === 1">
-        <h3>שלום לך! <br> היום נלמד על לקויות למידה</h3>
+        <h3>!שלום לך<br> היום נלמד על לקויות למידה</h3>
         <button id="startButton" @click="showLearning" class="custom-btn btn-1">התחלנו</button>
     </div>
     

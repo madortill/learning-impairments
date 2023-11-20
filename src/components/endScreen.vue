@@ -1,6 +1,6 @@
 <template>
     <div id="endScreen">
-      <div class="text" > כל בכבוד לכם !</div>
+      <div class="text" > כל הכבוד לכם !</div>
       <div class="text">סיימתם את הלומדה בהצלחה</div>
     </div>
   </template>
@@ -46,6 +46,7 @@
 .text{
   text-align: center;
   font-size: 5vh;
+  color: white;
 }
 </style>
   
