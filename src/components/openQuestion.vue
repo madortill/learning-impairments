@@ -1,12 +1,12 @@
 <template>
     <div id="openQuestion">
       <div id="question">
-        <p>{{ question.question }}</p>
+        <p class="specificQuestion">{{ question.question }}</p>
         <input type="text" id="answer" v-model="inputValue">
         <button class="button-4" role="button" id="checkButton" @click="checkAnswer">בדיקה</button>
         <br><br>
         <span v-if="!showAnswer && checked" class="emptyMsg">אופס, נראה שלא ענית על השאלה</span>
-        <div v-show="showAnswer">תשובה נכונה: {{ question.correct }}</div>
+        <div v-show="showAnswer">התשובה הנכונה: {{ question.correct }}</div>
         <button class="button-4" role="button" id="closeBtn" @click="finish" v-show="showEndBtn">סיימתי</button>
       </div>
     </div>
@@ -76,6 +76,11 @@
   position: relative;
   top: 3vh;
 }
+
+.specificQuestion {
+  direction: rtl;
+}
+
 
 #answer {
   height: 5vh;

@@ -2,7 +2,7 @@
     <div id="secondBehavior">
       <div id="text" v-show="showText === 0">
         <p id="head">דיסגרפיה</p>
-        <p style="text-align: center; position: relative; top: -2.5vh;">{{ myJson[16] }} {{ myJson[17] }}</p>
+        <p style="text-align: center; position: relative; top: -2.5vh; direction: rtl">{{ myJson[16] }} {{ myJson[17] }}</p>
         <div id="listsText">
           <p>{{ myJson[18] }}</p>
           <ul class="lists">
@@ -129,7 +129,7 @@
   position: relative;
   font-weight: bold;
   text-align: center;
-  font-size: 3vmin;
+  font-size: 2.6vh;
 }
 
 #whiteScreen {
@@ -156,6 +156,7 @@
   position: relative;
   top: -2vh;
   right: 1vw;
+  direction: rtl;
 }
 
 #secList {
@@ -185,12 +186,12 @@ li {
   top: 28.5vh;
   left: 26vw;
   font-size: 2.2vmin;
-  font-family: canvas;
+  font-family: "canvas";
   font-weight: bold;
 }
 
 @font-face {
-  font-family: canvas;
+  font-family: "canvas";
   src: url("../assets/fonts/dana.otf");
 }
 

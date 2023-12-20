@@ -2,7 +2,7 @@
     <div id="thirdBehavior">
       <div id="text" v-show="showText">
         <p id="head">דיסקלקוליה</p>
-        <p style="text-align: center; position: relative; top: -2.5vh;">{{ myJson[22]}} </p>
+        <p style="text-align: center; position: relative; top: -2.5vh; direction: rtl">{{ myJson[22]}} </p>
         <div id="listsText">
           <div id="firstList">
             <p>{{ myJson[23] }}</p>
@@ -152,7 +152,7 @@
   position: relative;
   font-weight: bold;
   text-align: center;
-  font-size: 3vmin;
+  font-size: 2.6vh;
 }
 
 #secNum {
