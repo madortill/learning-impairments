@@ -279,6 +279,7 @@
   background-color: black;
   border-radius: 1vh;
   margin-right: 1vw;
+  font-size: 1.75vh;
 }
 
 .secondScreenTwo {

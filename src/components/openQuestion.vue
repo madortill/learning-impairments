@@ -67,8 +67,9 @@
   position: absolute;
   height: 4vh;
   width: 4vw;
-  top: 40vh;
+  top: 38vh;
   right: 49vw;
+  text-align: center;
 }
 
 #question {
